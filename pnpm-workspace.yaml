@@ -9,3 +9,10 @@ packages:
 onlyBuiltDependencies:
     - esbuild
     - workerd
+
+# mdast-util-to-markdown >=2.1.3 serializes strong/emphasis through a `handler.attention`
+# property. fumadocs-core 16.9's stringifier (used by includeProcessedMarkdown in
+# apps/docs) wraps every handler and drops that property, so any `**bold**` text
+# recurses forever ("Maximum call stack size exceeded"). Remove once fumadocs is upgraded.
+overrides:
+    mdast-util-to-markdown: 2.1.2
