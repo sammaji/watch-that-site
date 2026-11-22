@@ -40,7 +40,7 @@ export type ConfigVariant = {
     description?: string;
     /** How to get what the form asks for, in order. */
     steps?: SetupStep[];
-    installAction?: "discord_bot" | "telegram_bot";
+    installAction?: "telegram_bot";
     schema: JsonSchema;
 };
 
@@ -236,62 +236,6 @@ export const NOTIFICATION_CHANNELS: NotificationChannel[] = [
                             type: "array",
                             title: "Channels",
                             description: "Channel or thread IDs.",
-                            items: {
-                                type: "object",
-                                required: ["channel_id"],
-                                properties: {
-                                    channel_id: {
-                                        type: "string",
-                                        title: "Channel ID",
-                                    },
-                                },
-                            },
-                        },
-                        users: {
-                            type: "array",
-                            title: "Direct Messages",
-                            description: "User IDs to send direct messages to.",
-                            items: {
-                                type: "object",
-                                required: ["user_id"],
-                                properties: {
-                                    user_id: {
-                                        type: "string",
-                                        title: "User ID",
-                                    },
-                                },
-                            },
-                        },
-                    },
-                },
-            },
-            watchthatsite_bot: {
-                label: "WatchThatSite Bot",
-                description:
-                    "Click the button below to install our bot to your server. Skip if already installed.",
-                installAction: "discord_bot",
-                steps: [
-                    {
-                        text: "Press Install WatchThatSite Bot and choose your server. You need the Manage Server permission there.",
-                    },
-                    {
-                        text: 'In Discord, turn on Developer Mode: User Settings → Advanced → Developer Mode. It adds the "Copy … ID" items used below.',
-                    },
-                    {
-                        text: "Right-click each channel or thread to notify → Copy Channel ID, and add it under Channels. Check that the bot can see and post in it (Edit Channel → Permissions).",
-                    },
-                    {
-                        text: "For direct messages, right-click a person → Copy User ID and add it under Direct Messages. They must share a server with the bot.",
-                    },
-                ],
-                schema: {
-                    type: "object",
-                    properties: {
-                        channels: {
-                            type: "array",
-                            title: "Channels",
-                            description:
-                                "Channel or thread IDs. The bot must have access.",
                             items: {
                                 type: "object",
                                 required: ["channel_id"],

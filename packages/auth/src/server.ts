@@ -6,6 +6,31 @@ import { nextCookies } from "better-auth/next-js";
 import { bearer, jwt } from "better-auth/plugins";
 import { deleteGatewayAccount } from "./gateway";
 
+/**
+ * Sends an auth email through Resend. Without RESEND_API_KEY (local
+ * development) it prints the link to the console instead, so sign-up and
+ * password reset still work.
+ */
+async function sendAuthEmail(
+    to: string,
+    url: string,
+    message: { subject: string; html: string; text: string },
+) {
+    if (!process.env.RESEND_API_KEY) {
+        console.log(
+            `[auth] RESEND_API_KEY is not set. "${message.subject}" for ${to}: ${url}`,
+        );
+        return;
+    }
+    const { data, error } = await resend().emails.send({
+        from: `${process.env.SMTP_SENDER_NAME} <${process.env.SMTP_MAIL}>`,
+        to: [to],
+        ...message,
+    });
+    if (error) console.error(error);
+    if (data) console.log(data);
+}
+
 export const auth = betterAuth({
     database: dbPool,
     appName: "WatchThatSite",
@@ -15,26 +40,20 @@ export const auth = betterAuth({
     emailAndPassword: {
         enabled: true,
         requireEmailVerification: true,
-        sendResetPassword: async data => {
-            const { data: success, error } = await resend().emails.send({
-                from: `${process.env.SMTP_SENDER_NAME} <${process.env.SMTP_MAIL}>`,
-                to: [data.user.email],
-                ...resetPassword(data.url, data.user.email),
-            });
-            if (error) console.error(error);
-            if (success) console.log(success);
-        },
+        sendResetPassword: async data =>
+            sendAuthEmail(
+                data.user.email,
+                data.url,
+                resetPassword(data.url, data.user.email),
+            ),
     },
     emailVerification: {
-        sendVerificationEmail: async data => {
-            const { data: success, error } = await resend().emails.send({
-                from: `${process.env.SMTP_SENDER_NAME} <${process.env.SMTP_MAIL}>`,
-                to: [data.user.email],
-                ...verificationLink(data.url, data.user.name),
-            });
-            if (error) console.error(error);
-            if (success) console.log(success);
-        },
+        sendVerificationEmail: async data =>
+            sendAuthEmail(
+                data.user.email,
+                data.url,
+                verificationLink(data.url, data.user.name),
+            ),
         sendOnSignUp: true,
         sendOnSignIn: true, // send email if user is not verified
         // Confirming the address signs the person in, so the link lands

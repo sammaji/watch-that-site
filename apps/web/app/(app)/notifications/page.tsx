@@ -370,27 +370,6 @@ function getInitialVariantType(
 
 // ---------- install bot button ----------
 
-function InstallDiscordBotButton() {
-    return (
-        <Button
-            type="button"
-            onClick={async () => {
-                const { data } = await authClient.signIn.social({
-                    provider: "discord",
-                    disableRedirect: true,
-                    callbackURL: "/notifications",
-                    errorCallbackURL: "/notifications",
-                });
-                if (!data || !data.url) {
-                    return;
-                }
-                window.open(data.url, "_blank", "noopener,noreferrer");
-            }}>
-            Install WatchThatSite Bot
-        </Button>
-    );
-}
-
 function InstallTelegramBotButton() {
     return (
         <Button
@@ -673,11 +652,6 @@ function ConfigureDialog({
                                         steps={activeVariant.steps}
                                     />
                                 :   null}
-
-                                {activeVariant?.installAction ===
-                                    "discord_bot" && (
-                                    <InstallDiscordBotButton />
-                                )}
                                 {activeVariant?.installAction ===
                                     "telegram_bot" && (
                                     <InstallTelegramBotButton />

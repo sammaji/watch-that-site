@@ -119,6 +119,20 @@ set_env_value "BIFROST_POSTGRES_PASSWORD" "$(openssl rand -hex 24)"
 set_env_value "ENCRYPTION_KEY" "$(openssl rand -hex 32)"
 set_env_value "AGENT_TOKEN" "$(openssl rand -hex 32)"
 set_env_value "SCHEDULER_ADMIN_TOKEN" "$(openssl rand -hex 32)"
+set_env_value "PROXY_API_KEY" "$(openssl rand -hex 32)"
+set_env_value "R2_API_TOKEN" "$(openssl rand -hex 32)"
+set_env_value "R2_SIGNING_SECRET" "$(openssl rand -hex 32)"
+
+# The object-store Worker (wrangler dev) reads its two secrets from .dev.vars;
+# they must match the ones in .env.
+DEV_VARS="$GIT_ROOT/packages/cloudflare/.dev.vars"
+if [ ! -f "$DEV_VARS" ]; then
+    {
+        echo "R2_API_TOKEN=$(get_env_value R2_API_TOKEN "$ENV_FILE")"
+        echo "R2_SIGNING_SECRET=$(get_env_value R2_SIGNING_SECRET "$ENV_FILE")"
+    } > "$DEV_VARS"
+    echo "INFO: Created packages/cloudflare/.dev.vars from .env"
+fi
 
 echo ""
 echo "INFO: Creating .env symlinks..."

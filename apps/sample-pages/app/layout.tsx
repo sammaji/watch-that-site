@@ -11,7 +11,7 @@ const description =
 export const metadata: Metadata = {
     title: {
         default: title,
-        template: "%s | WatchThatSite",
+        template: "%s",
     },
     description,
     keywords: [
@@ -43,7 +43,6 @@ export const metadata: Metadata = {
         ],
     },
     openGraph: {
-        title,
         description,
         siteName: appName,
         images: [
@@ -57,7 +56,6 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title,
         description,
         images: [getSiteUrl("og-image.jpg")],
     },

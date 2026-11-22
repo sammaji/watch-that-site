@@ -13,7 +13,7 @@ NC := \033[0m
 # optional and started by name.
 PROFILES := --profile core
 
-.PHONY: help install setup setup-env dev build docker-up docker-down \
+.PHONY: help demo-user install setup setup-env dev build docker-up docker-down \
 	docker-reset docker-logs docker-ps db-up wait-db db-setup db-down psql \
 	create-roles migrate backfill-jwks run-notification-service \
 	run-seeder-scripts run-browser-worker setup-workspace init clean
@@ -58,11 +58,15 @@ help:
 	@echo "  make backfill-jwks - Copy Better Auth's JWKS into PGRST_JWT_SECRET and"
 	@echo "                       restart PostgREST (OVERWRITE=true after wiping the database)"
 	@echo ""
+	@echo "  make demo-user     - Create a verified demo account (demo@watchthatsite.local)"
+	@echo ""
 	@echo "Utility:"
 	@echo "  make clean         - Remove docker volumes, node_modules and build caches"
 
 install:
 	pnpm install
+	@# The browser worker imports the object-store client from its build output.
+	pnpm --filter @watchthatsite/cloudflare build
 
 setup-env:
 	@chmod +x scripts/**/*.sh
@@ -148,6 +152,10 @@ run-%-service:
 
 run-notification-service:
 	@cd services/notifications && export $$(grep -v '^\#' .env | xargs) && go run ./cmd/main.go
+
+# A verified local account to sign in with (needs the web app running).
+demo-user:
+	@./scripts/create_demo_user.sh
 
 COUNT ?= 20
 run-seeder-scripts:
