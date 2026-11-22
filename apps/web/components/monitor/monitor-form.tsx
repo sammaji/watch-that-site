@@ -128,6 +128,12 @@ function Disclosure({
     );
 }
 
+/** The "Try an example" Monitor: a careers page whose PM roles change. */
+const EXAMPLE = {
+    url: `${process.env.NEXT_PUBLIC_SAMPLE_PAGES_URL || "https://samplepages.wts.sammaji.com"}/test/careers`,
+    instructions: "Let me know when there are new product manager roles.",
+};
+
 export function MonitorForm({ monitor }: { monitor?: Monitor }) {
     const isEdit = !!monitor;
     const router = useRouter();
@@ -231,49 +237,53 @@ export function MonitorForm({ monitor }: { monitor?: Monitor }) {
     }, []);
 
     /** Reads the page at the URL: its title for the name, and suggestions. */
-    const readPage = React.useCallback(() => {
-        const url = form.url.trim();
-        if (isHttpUrl(url)) setPreviewUrl(url);
-        if (!isHttpUrl(url) || url === titledUrl.current) return;
-        titledUrl.current = url;
-        // The name is the page's title. The quick lookup can be refused by
-        // the site; then the title the worker read while rendering is used.
-        let titled = false;
-        fetchUrlMetadata(url)
-            .then(meta => {
-                if (titledUrl.current !== url || !meta.title?.trim()) return;
-                titled = true;
-                autoName(meta.title);
-            })
-            .catch(() => {
-                // The name can be typed by hand, and falls back to the URL.
-            });
-        setSuggested({ url, status: "loading", items: [] });
-        fetch("/api/monitors/suggest", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ url }),
-        })
-            .then(async response => {
-                const json = (await response.json().catch(() => null)) as {
-                    title?: string;
-                    suggestions?: string[];
-                } | null;
-                if (!response.ok || !json?.suggestions) throw new Error();
-                // A later URL has taken over: this answer is for another page.
-                if (titledUrl.current !== url) return;
-                if (!titled) autoName(json.title);
-                setSuggested({
-                    url,
-                    status: "ready",
-                    items: json.suggestions,
+    const readPage = React.useCallback(
+        (target?: string) => {
+            const url = (target ?? form.url).trim();
+            if (isHttpUrl(url)) setPreviewUrl(url);
+            if (!isHttpUrl(url) || url === titledUrl.current) return;
+            titledUrl.current = url;
+            // The name is the page's title. The quick lookup can be refused by
+            // the site; then the title the worker read while rendering is used.
+            let titled = false;
+            fetchUrlMetadata(url)
+                .then(meta => {
+                    if (titledUrl.current !== url || !meta.title?.trim())
+                        return;
+                    titled = true;
+                    autoName(meta.title);
+                })
+                .catch(() => {
+                    // The name can be typed by hand, and falls back to the URL.
                 });
+            setSuggested({ url, status: "loading", items: [] });
+            fetch("/api/monitors/suggest", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ url }),
             })
-            .catch(() => {
-                if (titledUrl.current !== url) return;
-                setSuggested({ url, status: "failed", items: [] });
-            });
-    }, [form.url, autoName]);
+                .then(async response => {
+                    const json = (await response.json().catch(() => null)) as {
+                        title?: string;
+                        suggestions?: string[];
+                    } | null;
+                    if (!response.ok || !json?.suggestions) throw new Error();
+                    // A later URL has taken over: this answer is for another page.
+                    if (titledUrl.current !== url) return;
+                    if (!titled) autoName(json.title);
+                    setSuggested({
+                        url,
+                        status: "ready",
+                        items: json.suggestions,
+                    });
+                })
+                .catch(() => {
+                    if (titledUrl.current !== url) return;
+                    setSuggested({ url, status: "failed", items: [] });
+                });
+        },
+        [form.url, autoName],
+    );
     const pageSuggestions =
         suggested?.url === form.url.trim() ? suggested : null;
 
@@ -496,9 +506,27 @@ export function MonitorForm({ monitor }: { monitor?: Monitor }) {
                                         setPreviewUrl(null);
                                     }
                                 }}
-                                onBlur={readPage}
+                                onBlur={() => readPage()}
                             />
                             <FieldError message={errors.url} />
+                            {isEdit ? null : (
+                                <div className="flex justify-end">
+                                    <button
+                                        type="button"
+                                        data-testid="try-example"
+                                        onClick={() => {
+                                            change({
+                                                url: EXAMPLE.url,
+                                                instructions:
+                                                    EXAMPLE.instructions,
+                                            });
+                                            readPage(EXAMPLE.url);
+                                        }}
+                                        className="text-muted-foreground hover:text-foreground text-xs underline underline-offset-2">
+                                        Try an example
+                                    </button>
+                                </div>
+                            )}
                         </div>
 
                         <div className="space-y-2">

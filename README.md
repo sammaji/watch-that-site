@@ -53,16 +53,18 @@ Every variable is documented in `.env.example`.
 
 ```bash
 make docker-up                              # Postgres, PostgREST, RabbitMQ, Bifrost
-pnpm --filter @watchthatsite/cloudflare dev # object-store Worker on :8787
-make dev                                    # web :3000, site :3001, docs :3002, sample pages :3003
+make dev                                    # web :3000, site :3001, docs :3002, sample pages :3003,
+                                            # object-store Worker :8787, browser worker (agent API :5220)
 make run-scheduler-service                  # scheduler, admin API on :5210
-make run-browser-worker                     # browser worker, agent API on :5220
 make run-notification-service               # notification worker
+make run-proxy-service                      # proxy :5202, for the Monitor form's live preview
 ```
+
+See `AGENTS.md` for the complete setup, test logins and journeys to try.
 
 Each line after the first is a long-running process: give it its own terminal. `make help` lists every target.
 
-Open <http://localhost:3000> and sign up. The account gets its WatchThatSite credit the first time it opens the app; **Connections** in the sidebar shows it, and is where own keys are added.
+Open <http://localhost:3000> and sign up. The account gets its WatchThatSite credit the first time it opens the app; **Usage** in the sidebar shows it, and **BYOK** is where own keys are added.
 
 | Port | What |
 | --- | --- |
@@ -290,7 +292,7 @@ Supported channels:
 | -------- | ------------------------------------------------------ |
 | Email    | recipient list                                         |
 | Slack    | incoming webhooks                                      |
-| Discord  | webhook, bot token (channels + DMs), WatchThatSite bot |
+| Discord  | webhook, bot token (channels + DMs)                    |
 | Telegram | bot token + chat IDs, WatchThatSite bot                |
 | Webhook  | endpoint URLs with a signing secret; the body is the Change Record JSON |
 

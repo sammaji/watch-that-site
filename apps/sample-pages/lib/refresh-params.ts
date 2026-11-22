@@ -5,8 +5,13 @@ export type SearchParams = Promise<
     Record<string, string | string[] | undefined>
 >;
 
-export function toPositiveInterval(intervalMs: number, fallbackMs: number): number {
-    return Number.isFinite(intervalMs) && intervalMs > 0 ? intervalMs : fallbackMs;
+export function toPositiveInterval(
+    intervalMs: number,
+    fallbackMs: number,
+): number {
+    return Number.isFinite(intervalMs) && intervalMs > 0 ?
+            intervalMs
+        :   fallbackMs;
 }
 
 export const blogPageParams = createLoader(
@@ -29,6 +34,18 @@ export const careersPageParams = createLoader(
     {
         urlKeys: {
             titleRefreshInterval: "title_refresh_interval",
+        },
+    },
+);
+
+/** /test/careers: how often the product manager roles rotate, in ms. */
+export const testCareersPageParams = createLoader(
+    {
+        refreshInterval: parseAsInteger.withDefault(30_000),
+    },
+    {
+        urlKeys: {
+            refreshInterval: "refresh_interval",
         },
     },
 );
