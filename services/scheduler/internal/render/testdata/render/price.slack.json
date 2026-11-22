@@ -1,0 +1,60 @@
+{
+  "text": "Acme Pricing: The Pro plan went from $49 to $59 per month.",
+  "blocks": [
+    {
+      "type": "header",
+      "text": {
+        "type": "plain_text",
+        "text": "The Pro plan went from $49 to $59 per month.",
+        "emoji": true
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*\u003chttps://acme.test/pricing|Acme Pricing\u003e*\nSeen on two consecutive checks"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Pro plan price raised · Pricing table*\n~$49/month \u0026lt;billed yearly\u0026gt;~ → $59/month \u0026lt;billed yearly\u0026gt;"
+      }
+    },
+    {
+      "type": "actions",
+      "elements": [
+        {
+          "type": "button",
+          "text": {
+            "type": "plain_text",
+            "text": "View change"
+          },
+          "action_id": "view_change",
+          "url": "https://app.watchthat.test/changes/8a1f0c2e-1111-4222-8333-444455556666",
+          "style": "primary"
+        },
+        {
+          "type": "button",
+          "text": {
+            "type": "plain_text",
+            "text": "This was Noise"
+          },
+          "action_id": "mark_noise",
+          "url": "https://app.watchthat.test/changes/8a1f0c2e-1111-4222-8333-444455556666?feedback=noise"
+        },
+        {
+          "type": "button",
+          "text": {
+            "type": "plain_text",
+            "text": "Pause"
+          },
+          "action_id": "pause",
+          "url": "https://app.watchthat.test/monitors/3d5a7c10-aaaa-4bbb-8ccc-ddddeeeeffff?pause=1"
+        }
+      ]
+    }
+  ]
+}

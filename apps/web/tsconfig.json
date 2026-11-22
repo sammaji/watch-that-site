@@ -1,0 +1,22 @@
+{
+    "extends": "@watchthatsite/tsconfig/nextjs.json",
+    "compilerOptions": {
+        "paths": {
+            "@/*": ["./*"],
+            "@watchthatsite/ui/styles.css": [
+                "../../packages/ui/src/styles/globals.css"
+            ],
+            "@watchthatsite/auth/*": ["../../packages/auth/src/*"],
+            "@watchthatsite/db/*": ["../../packages/db/src/*"],
+            "@watchthatsite/ui/*": ["../../packages/ui/src/*"]
+        }
+    },
+    "include": [
+        "next-env.d.ts",
+        "**/*.ts",
+        "**/*.tsx",
+        ".next/types/**/*.ts",
+        ".next/dev/types/**/*.ts",
+        "**/*.mts"
+    ]
+}

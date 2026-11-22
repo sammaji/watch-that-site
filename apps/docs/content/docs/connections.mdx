@@ -1,0 +1,126 @@
+---
+title: Model connections
+description: Your WatchThatSite credit, and your own model keys, for the agent that checks your pages.
+---
+
+When a page changes, an AI agent reads your instructions and the differences and decides whether it is a change you asked about. The models it can use are your **connections**. Find them in the app under **Connections** in the sidebar.
+
+Every account starts with one: the **WatchThatSite credit**.
+
+## WatchThatSite credit
+
+Your account comes with $10 of credit for the agent's models. The top of the Connections page shows how much is left. Nothing to set up: new Monitors use it until you choose something else.
+
+It offers two models:
+
+| Model      | Use it for                                                    |
+| ---------- | ------------------------------------------------------------- |
+| `wts-pro`  | The default. Best judgement on what changed and why it matters |
+| `wts-mini` | Cheaper checks on simple pages                                |
+
+The credit is spent once and does not renew. When less than $1 is left, the app says so. When it is used up, Monitors that use it stop getting the agent's verdict, and their Changes say: "Your WatchThatSite credit is used up. Add your own model connection to keep checking pages." The credit connection cannot be edited or deleted.
+
+## Your own keys
+
+Add a key for a model provider and WatchThatSite uses it for the Monitors you choose. WatchThatSite charges nothing for this; your provider bills you for what your Monitors use.
+
+### Providers
+
+Pick the provider your key is for. WatchThatSite supports the providers of its model gateway that can run the agent:
+
+| Provider | What it asks for |
+| --- | --- |
+| OpenAI, Anthropic, Google Gemini, Mistral, Groq, Cohere, Cerebras, Fireworks, xAI, OpenRouter, DeepSeek | An API key |
+| Azure OpenAI | An API key, the resource endpoint, and your deployments (one per line: `gpt-4o = my-gpt4o`) |
+| AWS Bedrock | A Bedrock API key, or an access key ID and secret access key (with a session token for temporary credentials); the region; optionally inference profiles |
+| AWS Bedrock Mantle | An access key ID and secret access key, and the region |
+| Google Vertex AI | The project ID, the region, and a service account key (JSON) |
+
+Your own credentials are always required: WatchThatSite does not use cloud credentials of its own on your behalf.
+
+### Custom endpoints
+
+For any other server, choose **OpenAI-compatible endpoint** (a server that speaks the Chat Completions API: a gateway, or a model you host yourself) or **Anthropic-compatible endpoint** (one that speaks the Anthropic Messages API), and give its base URL.
+
+### Adding a connection
+
+1. Open **Connections** and choose **Add connection**.
+2. Pick the provider. The name fills in from it ("Azure OpenAI (eastus)"); change it if you like.
+3. Fill in what the provider asks for. Keys and other secrets go to the model gateway and are never shown again.
+4. Choose **Test** to see the models the key can use, or what is wrong: the key, the base URL, or the endpoint not answering.
+5. Save. The key is checked again, and a key that does not work is not saved.
+
+On save, every chat model the key lists is enabled and one is chosen as the default. Choose **Models** in the connection's menu to enable or disable models, change the default, or add a model id by hand.
+
+### Base URL of a custom endpoint
+
+For an OpenAI-compatible endpoint, give the address before `/chat/completions`; it usually ends in `/v1`. For an Anthropic-compatible endpoint, give the address without `/v1`.
+
+A base URL, like any server URL you give, must use `https` and point at a public address. If you change the base URL of a saved connection you are asked for the key again, so a key is never sent to a new address. Changing any provider setting asks for its secrets again the same way.
+
+## Examples
+
+### OpenAI
+
+| Field    | Value                                                                  |
+| -------- | ---------------------------------------------------------------------- |
+| Provider | OpenAI                                                                 |
+| API key  | A key from [platform.openai.com](https://platform.openai.com/api-keys) |
+
+### Anthropic
+
+| Field    | Value                                                                      |
+| -------- | -------------------------------------------------------------------------- |
+| Provider | Anthropic                                                                  |
+| API key  | A key from the [Claude Console](https://platform.claude.com/settings/keys) |
+
+### Azure OpenAI
+
+| Field       | Value                                                    |
+| ----------- | -------------------------------------------------------- |
+| Provider    | Azure OpenAI                                             |
+| API key     | A key of your Azure OpenAI resource                      |
+| Endpoint    | `https://<your-resource>.openai.azure.com`               |
+| Deployments | One per line, model = deployment: `gpt-4o = my-gpt4o`    |
+
+### OpenRouter
+
+| Field    | Value                                                  |
+| -------- | ------------------------------------------------------ |
+| Provider | OpenRouter                                             |
+| API key  | A key from [openrouter.ai](https://openrouter.ai/keys) |
+
+Model ids on a gateway like OpenRouter carry the vendor, like `openai/...` or `anthropic/...`. A gateway that lists thousands of models is easier to use with only the few you want enabled: open **Models**, choose **Disable all**, then enable the ones you use.
+
+### A self-hosted server
+
+| Field    | Value                                              |
+| -------- | -------------------------------------------------- |
+| Provider | OpenAI-compatible endpoint                         |
+| API key  | The server's key                                   |
+| Base URL | `https://llm.example.com/v1`                       |
+
+## Using a connection on a Monitor
+
+When you create or edit a Monitor you pick a connection and one of its enabled models. A Monitor with no connection chosen uses your first enabled connection of your own and its default model, or your WatchThatSite credit when you have none.
+
+If a Monitor's connection is deleted, the Monitor falls back the same way.
+
+## How your key is kept
+
+- Every model request WatchThatSite makes goes through its model gateway. Your key and other secrets are handed to the gateway when you add them, and only the gateway keeps them. WatchThatSite keeps the settings that are not secret (endpoint, region, project, deployments) and the key's last four characters, so you can tell connections apart.
+- Your account has its own access to the gateway, which can use your keys and your credit and nothing else. No other account can use your key.
+- The key is never shown again after you save it, and never sent to the browser.
+- Deleting a connection removes its key from the gateway. Deleting your account removes all of them.
+
+## When a check fails
+
+The icon before each connection's name shows the result of its last check; hover over it for the reason. Choose **Test** in the connection's menu to run it again.
+
+| Message                                    | What to do                                                                                                     |
+| ------------------------------------------ | -------------------------------------------------------------------------------------------------------------- |
+| The provider did not accept the check      | Read the provider's reason after it. Usually the key is incomplete, revoked, or for another provider: edit the connection to replace it. If it names the address, check the base URL. |
+| A local or private address                 | WatchThatSite only connects to public addresses.                                                               |
+| Could not find the host                    | Check the base URL for typos.                                                                                   |
+| The model gateway is not answering         | A problem on our side. Try again in a moment.                                                                  |
+| Your WatchThatSite credit is used up       | Add a connection with your own key and choose it on your Monitors.                                             |

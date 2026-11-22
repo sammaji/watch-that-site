@@ -1,0 +1,31 @@
+[
+    {
+        "name": "Pricing",
+        "url": "http://localhost:3003/test/diff/pricing",
+        "instructions": "Tell me when the price of any plan changes, or when a plan is added or removed. Ignore the \"last updated\" time.",
+        "interval_minutes": 5
+    },
+    {
+        "name": "Pricing: Pro gets cheaper",
+        "url": "http://localhost:3003/test/diff/pricing",
+        "instructions": "Tell me only when the Pro plan gets cheaper. Price rises and other plans do not matter.",
+        "interval_minutes": 10
+    },
+    {
+        "name": "Volatile page",
+        "url": "http://localhost:3003/test/diff/volatile",
+        "instructions": "Tell me about real changes to the content. Ignore clocks, counters, view counts and anything else that is different on every visit.",
+        "interval_minutes": 5
+    },
+    {
+        "name": "List additions",
+        "url": "http://localhost:3003/test/diff/list",
+        "instructions": "Tell me when an item is added to the list. Items that only move do not matter.",
+        "interval_minutes": 15
+    },
+    {
+        "name": "Shifted layout",
+        "url": "http://localhost:3003/test/diff/shift",
+        "instructions": "Tell me when the page looks different: a banner appears, or an image or a button changes."
+    }
+]

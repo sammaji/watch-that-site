@@ -1,0 +1,19 @@
+Twelve new remote roles were posted, including a Senior Go Engineer.
+Careers <Jobs & Openings> — https://acme.test/careers?team=all&remote=1
+
+- New role: Senior Go Engineer
+  New: Senior Go Engineer — Remote
+- New role: Staff Designer
+  New: Staff Designer — Remote
+- New role: Product Manager, Growth
+  New: Product Manager, Growth — Remote
+- New role: Support Lead <EMEA>
+  New: Support Lead <EMEA> — Remote
+- New role: Data Analyst
+  New: Data Analyst — Remote
+
++7 more: https://app.watchthat.test/changes/c7d9e1f3-3333-4444-8555-666677778888
+
+View change: https://app.watchthat.test/changes/c7d9e1f3-3333-4444-8555-666677778888
+This was noise: https://app.watchthat.test/changes/c7d9e1f3-3333-4444-8555-666677778888?feedback=noise
+Pause this Monitor: https://app.watchthat.test/monitors/3d5a7c10-aaaa-4bbb-8ccc-ddddeeeeffff?pause=1

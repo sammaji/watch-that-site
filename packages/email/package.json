@@ -1,0 +1,12 @@
+{
+    "name": "@watchthatsite/email",
+    "version": "0.1.0",
+    "author": "Samyabrata Maji <samyabratamaji334@gmail.com>",
+    "description": "Email templates + resend client.",
+    "license": "MIT",
+    "main": "index.ts",
+    "devDependencies": {
+        "@types/node": "^24.10.0",
+        "resend": "^5.0.0"
+    }
+}

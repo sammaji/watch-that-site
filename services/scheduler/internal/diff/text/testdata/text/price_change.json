@@ -1,0 +1,84 @@
+{
+  "a": [
+    {
+      "id": "h",
+      "path": "/body/h2[h]",
+      "tag": "h2",
+      "text": "Pricing"
+    },
+    {
+      "id": "p1",
+      "path": "/body/li[p1]",
+      "tag": "li",
+      "text": "Pro plan $49/month"
+    },
+    {
+      "id": "p2",
+      "path": "/body/li[p2]",
+      "tag": "li",
+      "text": "Team plan $99/month"
+    }
+  ],
+  "b": [
+    {
+      "id": "h",
+      "path": "/body/h2[h]",
+      "tag": "h2",
+      "text": "Pricing"
+    },
+    {
+      "id": "p1",
+      "path": "/body/li[p1]",
+      "tag": "li",
+      "text": "Pro plan $59/month"
+    },
+    {
+      "id": "p2",
+      "path": "/body/li[p2]",
+      "tag": "li",
+      "text": "Team plan $99/month"
+    }
+  ],
+  "expected": {
+    "ops": [
+      {
+        "op": "modify",
+        "block_id": "p1",
+        "from_block_id": "p1",
+        "tokens": [
+          {
+            "op": "=",
+            "text": "Pro plan "
+          },
+          {
+            "op": "-",
+            "text": "$49"
+          },
+          {
+            "op": "+",
+            "text": "$59"
+          },
+          {
+            "op": "=",
+            "text": "/month"
+          }
+        ],
+        "context_before": [
+          "Pricing"
+        ],
+        "context_after": [
+          "Team plan $99/month"
+        ]
+      }
+    ],
+    "magnitude": {
+      "words_added": 1,
+      "words_removed": 1,
+      "blocks_changed": 1,
+      "moves": 0,
+      "net_added": 1,
+      "net_removed": 1
+    },
+    "ignored_count": 0
+  }
+}

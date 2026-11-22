@@ -1,0 +1,22 @@
+{
+    "name": "@watchthatsite/db",
+    "version": "0.2.0",
+    "private": true,
+    "type": "module",
+    "exports": {
+        "./pool": "./src/pool.ts",
+        "./postgrest": "./src/postgrest.ts",
+        "./vault": "./src/vault.ts"
+    },
+    "dependencies": {
+        "@supabase/postgrest-js": "^2.105.1",
+        "pg": "^8.20.0",
+        "postgres": "^3.4.9"
+    },
+    "devDependencies": {
+        "@types/pg": "^8.20.0",
+        "@watchthatsite/tsconfig": "workspace:*",
+        "typescript": "^5.9.3",
+        "@types/node": "^24.10.3"
+    }
+}

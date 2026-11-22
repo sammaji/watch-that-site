@@ -1,0 +1,39 @@
+---
+title: Overview
+description: Configure notification channels to get alerted when your monitors detect changes.
+---
+
+[WatchThatSite](https://wts.sammaji.com) can notify you through multiple channels when a monitor detects a change. Each channel is configured independently and can be enabled or disabled at any time.
+
+## Supported Channels
+
+| Channel                                  | Method                                                                                                                                                                          | What you need                         |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
+| [Email](/docs/notifications/email)       | SMTP                                                                                                                                                                            | One or more recipient email addresses |
+| [Slack](/docs/notifications/slack)       | Incoming Webhooks                                                                                                                                                               | One or more Slack webhook URLs        |
+| [Discord](/docs/notifications/discord)   | [Webhooks](/docs/notifications/discord#webhook), [WatchThatSite Bot](/docs/notifications/discord#watchthatsite-bot) or [Custom Bot](/docs/notifications/discord#bot-token-byob) | Varies by method                      |
+| [Telegram](/docs/notifications/telegram) | Webhooks                                                                                                                                                                        | One or more Telegram webhook URLs     |
+
+## How It Works
+
+1. **Navigate** to the [Notifications](https://app.wts.sammaji.com/notifications) page in your dashboard.
+2. **Click** on Edit under the channel you want to configure.
+3. **Fill in** the required credentials (webhook URLs, tokens, email addresses, etc.).
+4. **Save** and **Enable** the configuration. Notifications are enabled immediately.
+
+## Managing Configurations
+
+From the [Notifications](https://app.wts.sammaji.com/notifications) page, you can:
+
+- **Enable** or **Disable** a channel without deleting its configuration.
+- **Edit** a channel's credentials by clicking the configure button.
+- **Disconnect** (delete) a configuration entirely by clicking the delete button.
+
+## Multiple Destinations
+
+Most channels support multiple destinations in a single configuration:
+
+- **Email**: Up to 10 recipient addresses.
+- **Slack**: Multiple webhook URLs (each posts to a different Slack channel).
+- **Discord Webhooks**: Multiple webhook URLs.
+- **Discord Bot**: Multiple channel or thread IDs or user DMs.

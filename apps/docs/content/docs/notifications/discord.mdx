@@ -1,0 +1,157 @@
+---
+title: Discord
+description: Configure Discord notifications via webhooks, your own bot token, or the WatchThatSite bot.
+---
+
+Discord supports three configuration methods. Pick the one that fits your setup.
+
+| Method                                  | Best for                                          | What you need         |
+| --------------------------------------- | ------------------------------------------------- | --------------------- |
+| [Webhook](#webhook)                     | Simple channel notifications                      | A Discord webhook URL |
+| [WatchThatSite Bot](#watchthatsite-bot) | Channels, threads, and DMs without managing a bot | One-click install     |
+| [Bot Token (BYOB)](#bot-token-byob)     | Channels, threads, and DMs with your own bot      | A Discord bot token   |
+
+---
+
+## Webhook
+
+The simplest method. Each webhook URL posts to a specific Discord channel.
+
+### Step 1: Create a Webhook in Discord
+
+1. Open your Discord server and go to the channel you want notifications in.
+2. Click the **gear icon** (Edit Channel) next to the channel name.
+3. Go to **Integrations** > **Webhooks**.
+4. Click **New Webhook**.
+5. Click **Copy Webhook URL**. It looks like:
+    ```
+    https://discord.com/api/webhooks/1234567890123456789/abcdef...
+    ```
+
+### Step 2: Configure in WatchThatSite
+
+1. Go to [Notifications](https://app.wts.sammaji.com/notifications) in your dashboard.
+2. Click on Edit under Discord to open the configuration dialog.
+3. Select **Webhook** from the type dropdown.
+4. Paste your webhook URL.
+5. To send to multiple channels, click **+ Add more** and paste additional URLs.
+6. Click **Save**.
+7. Once saved, enable the discord notifications by toggling the switch.
+
+### Limitations
+
+Using webhooks, you cannot send messages to a thread or user DM. You can only send to channels.
+
+---
+
+## WatchThatSite Bot
+
+The easiest option if you want to send notifications to a thread (forum) or user DM but don't want to manage your own bot. Install the WatchThatSite bot to your server with one click, then configure which channels and users to notify.
+
+### Step 1: Install the Bot
+
+1. Go to [Notifications](https://app.wts.sammaji.com/notifications) in your dashboard.
+2. Click on Edit under Discord to open the configuration dialog.
+3. Select **WatchThatSite Bot** from the dropdown.
+4. Click the **Install Discord Bot** button.
+5. Select the server to add the bot to and click **Authorize**.
+6. Once done, you will be redirected to the [Notifications](https://app.wts.sammaji.com/notifications) page.
+
+### Step 2: Configure Destinations
+
+1. Open Discord.
+2. Click on User settings (gear icon below, beside your user profile).
+3. Search for "Developer".
+4. Under "Developer", enable "Developer Mode" option. This will allow you to copy channel IDs, thread IDs and user IDs.
+5. To copy **Channel ID**, go to your channel in discord. Right click under the channel name in the sidebar and click "Copy Channel ID".
+6. To copy **Thread ID**, right click on the thread and click "Copy Thread ID".
+7. To copy **User ID**, click on profile and click "Copy User ID". You can only send user DMs to yourself.
+8. Put the Channel ID or Thread ID under **Channels** and User ID under **Direct Messages** in the discord notification settings in WatchThatSite.
+9. Click **Save**.
+10. Once saved, enable the discord notifications by toggling the switch.
+
+The bot must have access to the channels you specify. If you don't see messages appearing, check the bot's role permissions in your Discord server settings. (If you are sending to a private channel, make sure the bot is added to that channel).
+
+---
+
+## Bot Token (BYOB)
+
+Use your own Discord bot to send notifications to channels, threads and user DMs. This gives you full control over the bot's identity and permissions.
+
+### Step 1: Create a Discord Application
+
+1. Go to the [Discord Developer Portal](https://discord.com/developers/applications).
+2. Click **New Application**, enter a name, and click **Create**.
+
+### Step 2: Create a Bot
+
+1. In your application, go to **Bot** in the left sidebar.
+2. Click **Reset Token** (or **Add Bot** if no bot exists).
+3. Copy the **bot token** - you won't be able to see it again. If you already generated one, you can "Reset Token" to generate a new one.
+
+### Step 3: Invite the Bot to your server
+
+1. Click on **OAuth2** in the sidebar and scroll down **OAuth2 URL Generator**.
+2. Under **Scopes**, check **bot**.
+3. Under **Bot Permissions**, check:
+    - **Send Messages** (required)
+    - **Embed Links** (required)
+    - **Send Messages in Threads** (if you want thread notifications)
+4. Copy the generated URL and open it in your browser.
+5. Select the server to add the bot to and click **Authorize**.
+
+### Step 4: Get Channel and User IDs
+
+To get a channel or user ID in Discord:
+
+1. To copy **Channel ID**, go to your channel in discord. Right click under the channel name in the sidebar and click "Copy Channel ID".
+2. To copy **Thread ID**, right click on the thread and click "Copy Thread ID".
+3. To copy **User ID**, click on profile and click "Copy User ID". You can only send user DMs to yourself.
+
+### Step 5: Configure in WatchThatSite
+
+1. Go to [Notifications](https://app.wts.sammaji.com/notifications) in your dashboard.
+2. Click **Discord** to open the configuration dialog.
+3. Select **Bot Token** from the type dropdown.
+4. Paste your bot token.
+5. Add channel or thread IDs under **Channels** (click **+ Add** to add entries).
+6. Add user IDs under **Direct Messages** for DM notifications (click **+ Add** to add entries).
+7. Click **Save**.
+8. Once saved, enable the discord notifications by toggling the switch.
+
+You need at least one channel or one user to send to.
+
+The bot must have access to the channels you specify. If you don't see messages appearing, check the bot's role permissions in your Discord server settings. (If you are sending to a private channel, make sure the bot is added to that channel).
+
+### Permissions Reference
+
+| Permission               | Value          | Required for            |
+| ------------------------ | -------------- | ----------------------- |
+| Send Messages            | `2048`         | Posting in channels     |
+| Embed Links              | `16384`        | Rich embeds in messages |
+| Send Messages in Threads | `274877906944` | Posting in threads      |
+
+---
+
+## Troubleshooting
+
+### Webhook returns 404 Not Found
+
+The webhook was deleted in Discord. Create a new one in the channel's **Integrations** settings.
+
+### Bot returns 403 Forbidden
+
+The bot doesn't have permission to send messages in that channel. Check the bot's role permissions in **Server Settings** > **Roles** and ensure it has **Send Messages** for the target channel.
+
+### Bot returns 401 Unauthorized
+
+The bot token is invalid or has been regenerated. Go to the [Discord Developer Portal](https://discord.com/developers/applications), reset the token, and update it in your WatchThatSite configuration.
+
+### DMs not being delivered
+
+- The target user must share a server with the bot.
+- The user must have **Allow direct messages from server members** enabled in their privacy settings for that server.
+
+### Messages not appearing in threads
+
+For threads, use the thread's channel ID (not the parent channel). The bot needs **Send Messages in Threads** permission.

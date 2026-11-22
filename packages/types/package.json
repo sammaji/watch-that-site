@@ -1,0 +1,25 @@
+{
+    "name": "@watchthatsite/types",
+    "version": "0.1.0",
+    "private": true,
+    "type": "module",
+    "description": "Shared contracts: the Monitor, the Macro, the Change Record, and the messages the services exchange.",
+    "exports": {
+        ".": "./src/index.ts",
+        "./change-record": "./src/change-record.ts",
+        "./macro": "./src/macro.ts",
+        "./monitor-config": "./src/monitor-config.ts",
+        "./protocol": "./src/protocol.ts",
+        "./watch-plan": "./src/watch-plan.ts"
+    },
+    "scripts": {
+        "test": "vitest run",
+        "typecheck": "tsc --noEmit"
+    },
+    "devDependencies": {
+        "@types/node": "^24.10.3",
+        "@watchthatsite/tsconfig": "workspace:*",
+        "typescript": "^5.9.3",
+        "vitest": "^3.2.4"
+    }
+}

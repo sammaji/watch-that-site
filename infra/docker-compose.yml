@@ -1,0 +1,204 @@
+services:
+    watchthatsite-postgres:
+        image: postgres:18-alpine3.22
+        container_name: watchthatsite-postgres
+        restart: unless-stopped
+        env_file:
+            - path: .env
+              required: true
+        environment:
+            POSTGRES_DB: ${POSTGRES_DATABASE:?environment variable POSTGRES_DATABASE is not set.}
+            POSTGRES_USER: ${POSTGRES_USER:?environment variable POSTGRES_USER is not set.}
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?environment variable POSTGRES_PASSWORD is not set.}
+        ports:
+            - 5200:5432
+        volumes:
+            - watchthatsite-postgres-data:/var/lib/postgresql
+        networks:
+            - watchthatsite-net
+        profiles:
+            - core
+
+    watchthatsite-postgrest:
+        image: postgrest/postgrest:v13.0.8
+        container_name: watchthatsite-postgrest
+        restart: unless-stopped
+        env_file:
+            - path: .env
+              required: true
+        environment:
+            PGRST_DB_URI: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@watchthatsite-postgres:5432/${POSTGRES_DATABASE}
+            PGRST_DB_SCHEMA: public
+            PGRST_DB_POOL: 10
+            PGRST_DB_ANON_ROLE: anon
+            PGRST_DB_AUTHENTICATED_ROLE: authenticated
+            PGRST_JWT_SECRET: ${PGRST_JWT_SECRET:?environment variable PGRST_JWT_SECRET is not set.}
+            PGRST_JWT_AUD: ${PGRST_JWT_AUD:?environment variable PGRST_JWT_AUD is not set.}
+        ports:
+            - 5201:3000
+        depends_on:
+            - watchthatsite-postgres
+        networks:
+            - watchthatsite-net
+        profiles:
+            - core
+
+    watchthatsite-rabbitmq:
+        image: rabbitmq:4.3.0-management-alpine
+        container_name: watchthatsite-rabbitmq
+        restart: unless-stopped
+        ports:
+            - "5672:5672" # AMQP
+            - "15672:15672" # Management UI
+        env_file:
+            - path: .env
+              required: true
+        environment:
+            RABBITMQ_USER: ${RABBITMQ_USER:?environment variable RABBITMQ_USER is not set.}
+            RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD:?environment variable RABBITMQ_PASSWORD is not set.}
+            RABBITMQ_DEFAULT_VHOST: /
+        entrypoint: ["/bin/sh", "/entrypoint.sh"]
+        volumes:
+            - watchthatsite-rabbitmq-data:/var/lib/rabbitmq
+            - ./rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf:ro
+            - ./rabbitmq/definitions.template.json:/etc/rabbitmq/definitions.template.json:ro
+            - ./rabbitmq/entrypoint.sh:/entrypoint.sh:ro
+        deploy:
+            resources:
+                limits:
+                    memory: 2g
+                reservations:
+                    memory: 256m
+        healthcheck:
+            test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+            interval: 30s
+            timeout: 10s
+            retries: 5
+            start_period: 30s
+        logging:
+            driver: "json-file"
+            options:
+                max-size: "50m"
+                max-file: "5"
+        profiles:
+            - core
+
+    # The Bifrost model gateway every model call goes through (see "Model
+    # gateway and connections" in README.md). Its own Postgres keeps provider
+    # keys, virtual keys, budgets and usage.
+    watchthatsite-bifrost-postgres:
+        image: postgres:18-alpine3.22
+        container_name: watchthatsite-bifrost-postgres
+        restart: unless-stopped
+        env_file:
+            - path: .env
+              required: true
+        environment:
+            POSTGRES_DB: ${BIFROST_POSTGRES_DATABASE:?environment variable BIFROST_POSTGRES_DATABASE is not set.}
+            POSTGRES_USER: ${BIFROST_POSTGRES_USER:?environment variable BIFROST_POSTGRES_USER is not set.}
+            POSTGRES_PASSWORD: ${BIFROST_POSTGRES_PASSWORD:?environment variable BIFROST_POSTGRES_PASSWORD is not set.}
+        healthcheck:
+            test:
+                [
+                    "CMD-SHELL",
+                    "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB",
+                ]
+            interval: 5s
+            timeout: 5s
+            retries: 10
+        volumes:
+            - watchthatsite-bifrost-postgres-data:/var/lib/postgresql
+        networks:
+            - watchthatsite-net
+        profiles:
+            - core
+
+    watchthatsite-bifrost:
+        image: maximhq/bifrost:v2.6.0
+        container_name: watchthatsite-bifrost
+        restart: unless-stopped
+        depends_on:
+            watchthatsite-bifrost-postgres:
+                condition: service_healthy
+        env_file:
+            - path: .env
+              required: true
+        ports:
+            - 5203:8080
+        volumes:
+            - ./bifrost.config.json:/app/data/config.json:ro
+        healthcheck:
+            test:
+                [
+                    "CMD",
+                    "wget",
+                    "--no-verbose",
+                    "--tries=1",
+                    "--spider",
+                    "http://127.0.0.1:8080/health",
+                ]
+            interval: 5s
+            timeout: 10s
+            retries: 30
+            start_period: 10s
+        networks:
+            - watchthatsite-net
+        profiles:
+            - core
+
+    watchthatsite-proxy:
+        build:
+            context: ../services/proxy
+            dockerfile: dockerfile
+        container_name: watchthatsite-proxy
+        restart: unless-stopped
+        environment:
+            ADDR: :8080
+        ports:
+            - 5202:8080
+        networks:
+            - watchthatsite-net
+        profiles:
+            - services
+
+    watchthatsite-minio:
+        image: minio/minio:RELEASE.2025-04-22T22-12-26Z
+        container_name: watchthatsite-minio
+        restart: unless-stopped
+        command: server /data --console-address ":9001"
+        env_file:
+            - path: .env
+              required: true
+        environment:
+            MINIO_ROOT_USER: ${MINIO_ROOT_USER:-minioadmin}
+            MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-minioadmin}
+        ports:
+            - 5204:9000 # S3 API
+            - 5205:9001 # Console
+        volumes:
+            - watchthatsite-minio-data:/data
+        healthcheck:
+            test: ["CMD", "mc", "ready", "local"]
+            interval: 5s
+            timeout: 10s
+            retries: 30
+            start_period: 5s
+        networks:
+            - watchthatsite-net
+        profiles:
+            - storage
+
+volumes:
+    watchthatsite-postgres-data:
+        name: watchthatsite-postgres-data
+    watchthatsite-bifrost-postgres-data:
+        name: watchthatsite-bifrost-postgres-data
+    watchthatsite-rabbitmq-data:
+        name: watchthatsite-rabbitmq-data
+    watchthatsite-minio-data:
+        name: watchthatsite-minio-data
+
+networks:
+    watchthatsite-net:
+        name: watchthatsite-net
+        driver: bridge

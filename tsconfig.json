@@ -1,0 +1,15 @@
+{
+    "extends": "gts/tsconfig-google.json",
+    "compilerOptions": {
+        "rootDir": ".",
+        "outDir": "build"
+    },
+    "include": [
+        "packages/**/*.ts",
+        "packages/**/*.tsx",
+        "services/**/*.ts",
+        "services/**/*.tsx",
+        "tests/**/*.ts",
+        "tests/**/*.tsx"
+    ]
+}

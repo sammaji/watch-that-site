@@ -1,0 +1,454 @@
+@import "tailwindcss";
+
+@import "tw-animate-css";
+@plugin "@tailwindcss/typography";
+
+@variant dark (&:is(.dark *));
+
+:root {
+    --radius: 8px;
+
+    --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+    --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+    --shadow-sm:
+        0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
+    --shadow:
+        0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
+    --shadow-md:
+        0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.1);
+    --shadow-lg:
+        0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 4px 6px -1px hsl(0 0% 0% / 0.1);
+    --shadow-xl:
+        0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1);
+    --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+
+    --font-dm-sans: "dmSans", sans-serif;
+    --font-inter: "inter", sans-serif;
+
+    --font-sans:
+        var(--font-dm-sans), var(--font-inter), ui-sans-serif, system-ui,
+        sans-serif;
+    --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    --font-mono:
+        ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+
+    /* StyleGlide provides a better abstraction for fonts */
+    --display-family: var(--font-sans);
+    --text-family: var(--font-inter);
+    --display-weight: 600;
+    --text-weight: 400;
+
+    --swiper-theme-color: #007aff;
+    --swiper-navigation-size: 44px;
+}
+
+.dark {
+    --ring: oklch(0.556 0 0);
+
+    --sidebar: oklch(0.205 0 0);
+    --sidebar-foreground: oklch(0.985 0 0);
+    --sidebar-primary: oklch(0.488 0.243 264.376);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.269 0 0);
+    --sidebar-accent-foreground: oklch(0.985 0 0);
+    --sidebar-border: oklch(1 0 0 / 10%);
+    --sidebar-ring: oklch(0.556 0 0);
+}
+
+@theme inline {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+
+    --color-chart-1: var(--chart-1);
+    --color-chart-2: var(--chart-2);
+    --color-chart-3: var(--chart-3);
+    --color-chart-4: var(--chart-4);
+    --color-chart-5: var(--chart-5);
+
+    --color-sidebar: var(--sidebar);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-ring: var(--sidebar-ring);
+
+    --radius-xs: calc(var(--radius) - 4px);
+    --radius-sm: calc(var(--radius) - 4px);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) * 2 - 4px);
+    --radius-2xl: calc(var(--radius) * 2);
+    --radius-3xl: calc(var(--radius) * 3);
+    --radius-4xl: calc(var(--radius) * 4);
+
+    --shadow-2xs: var(--shadow-2xs);
+    --shadow-xs: var(--shadow-xs);
+    --shadow-sm: var(--shadow-sm);
+    --shadow: var(--shadow);
+    --shadow-md: var(--shadow-md);
+    --shadow-lg: var(--shadow-lg);
+    --shadow-xl: var(--shadow-xl);
+    --shadow-2xl: var(--shadow-2xl);
+
+    --breakpoint-sm: 640px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1280px;
+    --breakpoint-2xl: 1400px; /* default is 1536px */
+
+    --font-sans: var(--font-sans);
+    --font-serif: var(--font-serif);
+    --font-mono: var(--font-mono);
+
+    --font-display: var(--display-family);
+    --font-text: var(--text-family);
+    --font-weight-display: var(--display-weight);
+    --font-weight-text: var(--text-weight);
+
+    --animate-accordion-down: accordion-down 0.2s ease-out;
+    --animate-accordion-up: accordion-up 0.2s ease-out;
+    --animate-infinite-scroll: infinite-scroll 25s linear infinite;
+
+    --color-theme-dark: #030303;
+    --color-theme-dark-50: #e6e6e6;
+    --color-theme-dark-500: #060606;
+
+    @keyframes accordion-down {
+        from {
+            height: 0;
+        }
+        to {
+            height: var(--radix-accordion-content-height);
+        }
+    }
+    @keyframes accordion-up {
+        from {
+            height: var(--radix-accordion-content-height);
+        }
+        to {
+            height: 0;
+        }
+    }
+}
+
+@utility container {
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+    @media (width >= 1400px) {
+        max-width: 1220px;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-secondary;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-secondary, currentColor);
+    }
+}
+
+@layer utilities {
+    body,
+    .font-text {
+        font-family: var(--font-text);
+        font-weight: var(--text-weight);
+    }
+    h1,
+    h2,
+    .font-display {
+        font-family: var(--font-display);
+        font-weight: var(--display-weight);
+        -webkit-font-feature-settings:
+            "ss02" on,
+            "ss03" on,
+            "ss04" on;
+        -moz-font-feature-settings:
+            "ss02" on,
+            "ss03" on,
+            "ss04" on;
+        -ms-font-feature-settings:
+            "ss02" on,
+            "ss03" on,
+            "ss04" on;
+        font-feature-settings:
+            "ss02" on,
+            "ss03" on,
+            "ss04" on; /* Enables the special `a` character and other characters for DM Sans */
+    }
+    .font-mono {
+        font-family: var(--font-mono), monospace;
+    }
+}
+
+@layer components {
+    button {
+        cursor: pointer;
+    }
+    [class*="border"] {
+        @apply border-secondary;
+    }
+}
+
+html,
+body {
+    scroll-behavior: smooth;
+}
+body {
+    position: relative;
+}
+
+@keyframes scroll-left {
+    0% {
+        transform: translate(0);
+    }
+
+    to {
+        transform: translate(-50%);
+    }
+}
+
+@keyframes scroll-right {
+    0% {
+        transform: translate(-50%);
+    }
+
+    to {
+        transform: translate(0);
+    }
+}
+
+.animate-scroll-left {
+    animation: 30s linear infinite scroll-left;
+}
+
+.animate-scroll-right {
+    animation: 30s linear infinite scroll-right;
+}
+
+.markdown > h1 {
+    @apply mb-5 scroll-mt-24 text-3xl text-white;
+}
+
+.markdown > h2 {
+    @apply mt-10 mb-5 scroll-mt-24 text-2xl text-white;
+}
+
+.markdown > h3 {
+    @apply mt-8 mb-4 scroll-mt-24 text-base font-medium text-white;
+}
+
+.markdown > h4,
+.markdown > h5,
+.markdown > h6 {
+    @apply mt-6 mb-3 scroll-mt-24 font-medium text-white;
+}
+
+.markdown > p {
+    @apply mb-5 text-base leading-7 text-white/80;
+}
+
+.markdown > ul,
+.markdown > ol {
+    @apply mb-5 space-y-2 pl-5 text-base leading-7 text-white/80;
+}
+
+.markdown > ul {
+    @apply list-disc;
+}
+
+.markdown > ol {
+    @apply list-decimal;
+}
+
+.markdown > blockquote {
+    @apply mb-5 border-l border-white/20 pl-5 text-white/80 italic;
+}
+
+.markdown > pre {
+    @apply mb-5 overflow-x-auto border border-white/20 bg-white/5 p-5 text-sm;
+}
+
+.markdown > table {
+    @apply mb-5 w-full border-collapse overflow-hidden text-left text-sm text-white/80;
+}
+
+.markdown > table th,
+.markdown > table td {
+    @apply border border-white/20 px-4 py-3 align-top;
+}
+
+.markdown > table th {
+    @apply bg-white/10 font-medium text-white;
+}
+
+.markdown > table tbody tr:nth-child(even) {
+    @apply bg-white/3;
+}
+
+.markdown > hr {
+    @apply my-8 border-white/20;
+}
+
+.markdown > p > a,
+.markdown > ul a,
+.markdown > ol a {
+    @apply font-medium text-white underline underline-offset-4;
+}
+
+.markdown > p > code,
+.markdown > ul code,
+.markdown > ol code {
+    @apply bg-white/10 px-1.5 py-0.5 text-sm text-white;
+}
+
+.markdown > pre code {
+    @apply bg-transparent p-0 text-sm;
+}
+
+.markdown > h1 > .heading-anchor,
+.markdown > h2 > .heading-anchor,
+.markdown > h3 > .heading-anchor,
+.markdown > h4 > .heading-anchor,
+.markdown > h5 > .heading-anchor,
+.markdown > h6 > .heading-anchor {
+    @apply ml-2 text-white/30 no-underline opacity-0 transition-opacity hover:text-white/50;
+}
+
+.markdown > h1:hover > .heading-anchor,
+.markdown > h2:hover > .heading-anchor,
+.markdown > h3:hover > .heading-anchor,
+.markdown > h4:hover > .heading-anchor,
+.markdown > h5:hover > .heading-anchor,
+.markdown > h6:hover > .heading-anchor,
+.markdown > h1 > .heading-anchor:focus,
+.markdown > h2 > .heading-anchor:focus,
+.markdown > h3 > .heading-anchor:focus,
+.markdown > h4 > .heading-anchor:focus,
+.markdown > h5 > .heading-anchor:focus,
+.markdown > h6 > .heading-anchor:focus {
+    @apply opacity-100;
+}
+
+@keyframes infinite-scroll {
+    0% {
+        transform: translate(0);
+    }
+
+    to {
+        transform: translate(-100%);
+    }
+}
+
+:host {
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 1;
+}
+
+.swiper {
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+    z-index: 1;
+    display: block;
+}
+
+.swiper-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    transition-property: transform;
+    transition-timing-function: var(
+        --swiper-wrapper-transition-timing-function,
+        initial
+    );
+    box-sizing: content-box;
+}
+
+.swiper-wrapper {
+    transform: translateZ(0);
+}
+
+.swiper-horizontal {
+    touch-action: pan-y;
+}
+
+.swiper-slide {
+    flex-shrink: 0;
+    height: 100%;
+    position: relative;
+    transition-property: transform;
+    display: block;
+}
+
+.swiper-backface-hidden .swiper-slide {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+.swiper-css-mode > .swiper-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.swiper-css-mode.swiper-centered > .swiper-wrapper:before {
+    content: "";
+    flex-shrink: 0;
+    order: 9999;
+}
+
+.swiper-css-mode.swiper-centered.swiper-horizontal > .swiper-wrapper:before {
+    height: 100%;
+    min-height: 1px;
+    width: var(--swiper-centered-offset-after);
+}
+
+.swiper-css-mode.swiper-centered.swiper-vertical > .swiper-wrapper:before {
+    width: 100%;
+    min-width: 1px;
+    height: var(--swiper-centered-offset-after);
+}
+
+@keyframes swiper-preloader-spin {
+    0% {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}

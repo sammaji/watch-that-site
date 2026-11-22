@@ -1,0 +1,71 @@
+{
+  "a": [
+    {
+      "id": "h",
+      "path": "/body/h1[h]",
+      "tag": "h1",
+      "text": "Welcome"
+    },
+    {
+      "id": "ad",
+      "path": "/body/div[ad]",
+      "tag": "div",
+      "text": "Sponsored: buy shoes now",
+      "ignored": true
+    },
+    {
+      "id": "f",
+      "path": "/body/p[f]",
+      "tag": "p",
+      "text": "Footer text"
+    }
+  ],
+  "b": [
+    {
+      "id": "h",
+      "path": "/body/h1[h]",
+      "tag": "h1",
+      "text": "Welcome"
+    },
+    {
+      "id": "ad",
+      "path": "/body/div[ad]",
+      "tag": "div",
+      "text": "Sponsored: buy shoes today",
+      "ignored": true
+    },
+    {
+      "id": "f",
+      "path": "/body/p[f]",
+      "tag": "p",
+      "text": "Footer text"
+    }
+  ],
+  "expected": {
+    "ops": [
+      {
+        "op": "ignored",
+        "block_id": "ad",
+        "from_block_id": "ad",
+        "text": "Sponsored: buy shoes today",
+        "old_text": "Sponsored: buy shoes now",
+        "context_before": [
+          "Welcome"
+        ],
+        "context_after": [
+          "Footer text"
+        ]
+      }
+    ],
+    "counted_ops": 0,
+    "ignored_count": 1,
+    "magnitude": {
+      "words_added": 0,
+      "words_removed": 0,
+      "blocks_changed": 0,
+      "change_ratio": 0,
+      "net_added": 0,
+      "net_removed": 0
+    }
+  }
+}

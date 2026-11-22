@@ -1,0 +1,45 @@
+{
+  "a": [
+    {
+      "id": "h",
+      "path": "/body/h1[h]",
+      "tag": "h1",
+      "text": "Status dashboard"
+    },
+    {
+      "id": "s",
+      "path": "/body/p[s]",
+      "tag": "p",
+      "text": "All systems operational. Updated {{clock:14:03}} today"
+    }
+  ],
+  "b": [
+    {
+      "id": "h",
+      "path": "/body/h1[h]",
+      "tag": "h1",
+      "text": "Status dashboard"
+    },
+    {
+      "id": "s",
+      "path": "/body/p[s]",
+      "tag": "p",
+      "text": "All systems operational. Updated {{clock:14:07}} today"
+    }
+  ],
+  "expected": {
+    "ops": [],
+    "magnitude": {
+      "words_added": 0,
+      "words_removed": 0,
+      "blocks_changed": 0,
+      "change_ratio": 0,
+      "net_added": 0,
+      "net_removed": 0
+    },
+    "ignored_count": 0,
+    "masked": [
+      "clock"
+    ]
+  }
+}

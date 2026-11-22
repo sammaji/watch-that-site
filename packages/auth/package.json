@@ -1,0 +1,26 @@
+{
+    "name": "@watchthatsite/auth",
+    "version": "0.1.0",
+    "private": true,
+    "type": "module",
+    "exports": {
+        "./client": "./src/client.ts",
+        "./next": "./src/next.ts",
+        "./postgrest": "./src/postgrest.ts",
+        "./server": "./src/server.ts"
+    },
+    "dependencies": {
+        "@watchthatsite/db": "workspace:*",
+        "@watchthatsite/email": "workspace:*",
+        "better-auth": "^1.6.5",
+        "next": "16.1.6"
+    },
+    "peerDependencies": {
+        "react": "^19.0.0"
+    },
+    "devDependencies": {
+        "@types/react": "^19.2.14",
+        "@watchthatsite/tsconfig": "workspace:*",
+        "typescript": "^5.9.3"
+    }
+}

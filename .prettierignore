@@ -1,0 +1,7 @@
+build/
+node_modules/
+.turbo/
+.next/
+.source/
+.claude/
+pnpm-lock.yaml

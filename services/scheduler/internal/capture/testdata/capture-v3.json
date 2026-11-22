@@ -1,0 +1,69 @@
+{
+  "version": 3,
+  "run_id": "2136440b-8e77-4a2d-8fe2-fcaea8af11f7",
+  "monitor_id": "8dea949d-d40b-49f6-8f9a-9e31f891eb4e",
+  "status": "ok",
+  "invalid_reason": null,
+  "error": null,
+  "blocks": [
+    {
+      "id": "b0",
+      "path": "/html[1]/body[1]/header[1]/nav[1]",
+      "tag": "nav",
+      "text": "Acme Billing",
+      "rect": [0, 0, 1366, 22]
+    },
+    {
+      "id": "b1",
+      "path": "/html[1]/body[1]/main[1]/h1[1]",
+      "tag": "h1",
+      "text": "Your plan",
+      "rect": [20, 80, 1326, 45]
+    },
+    {
+      "id": "b2",
+      "path": "/html[1]/body[1]/main[1]/section[1]/article[1]/h2[1]",
+      "tag": "h2",
+      "text": "Pro (annual)",
+      "rect": [33, 176, 405, 34]
+    },
+    {
+      "id": "b3",
+      "path": "/html[1]/body[1]/main[1]/section[1]/article[1]/p[1]",
+      "tag": "p",
+      "text": "$490 per year, renews on 1 March",
+      "rect": [33, 218, 405, 22]
+    },
+    {
+      "id": "b4",
+      "path": "/html[1]/body[1]/footer[1]/p[1]",
+      "tag": "p",
+      "text": "Updated 3 minutes ago",
+      "rect": [20, 700, 1326, 22]
+    }
+  ],
+  "truncated": false,
+  "screenshot": {
+    "key": "captures/8dea949d-d40b-49f6-8f9a-9e31f891eb4e/2136440b-8e77-4a2d-8fe2-fcaea8af11f7/shot.png",
+    "w": 1366,
+    "h": 768,
+    "format": "png"
+  },
+  "masks": [[1000, 300, 320, 180]],
+  "meta": {
+    "http_status": 200,
+    "final_url": "https://acme.test/billing",
+    "title": "Billing - Acme",
+    "stable": true,
+    "env_version": "2026-11-21.1",
+    "timings_ms": { "load": 812, "settle": 1500, "total": 4310 }
+  },
+  "macro": {
+    "macro_id": "5b0c2f0e-3c57-4a55-b1a5-0d6f3f0f7a11",
+    "status": "repaired",
+    "failed_step": null,
+    "repaired_macro_id": "9a4e1d7c-62f8-4a0b-8a3e-6c1f2b7d9e02",
+    "input_tokens": 1840,
+    "output_tokens": 212
+  }
+}

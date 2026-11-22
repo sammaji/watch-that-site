@@ -1,0 +1,34 @@
+{
+    "name": "@watchthatsite/tests",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "test": "vitest run",
+        "test:proxy": "vitest run --dir proxy",
+        "test:proxy:ui": "vitest --dir proxy --ui",
+        "test:notifications": "vitest run --dir notifications",
+        "test:notifications:ui": "vitest --dir notifications --ui",
+        "test:browser-worker": "vitest run --dir browser-workers",
+        "test:browser-worker:ui": "vitest --dir browser-workers --ui",
+        "test:browser-worker:all": "LOAD_SOAK=1 vitest run --dir browser-workers",
+        "load:browser-worker:short": "tsx browser-workers/load/browser-pool-memory.ts --scenario short",
+        "load:browser-worker:long": "tsx browser-workers/load/browser-pool-memory.ts --scenario long",
+        "test:sinks": "vitest run lib/sinks.test.ts",
+        "sinks": "tsx lib/sinks.ts",
+        "test:e2e": "vitest run --dir e2e --no-file-parallelism"
+    },
+    "devDependencies": {
+        "@types/amqplib": "^0.10.8",
+        "@types/node": "^20",
+        "@types/pg": "^8.15.4",
+        "@vitest/ui": "3.2.4",
+        "amqplib": "^0.10.8",
+        "dotenv": "^16.5.0",
+        "pg": "^8.16.0",
+        "playwright-core": "^1.60.0",
+        "resend": "^4.5.1",
+        "tsx": "^4.22.4",
+        "typescript": "^5",
+        "vitest": "^3.2.1"
+    }
+}

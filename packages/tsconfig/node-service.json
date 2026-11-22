@@ -1,0 +1,16 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "display": "Node Service",
+    "extends": "./base.json",
+    "compilerOptions": {
+        "lib": ["esnext"],
+        "types": ["node"],
+        "noEmit": false,
+        "declaration": true,
+        "declarationMap": true,
+        "sourceMap": true,
+        "noUncheckedIndexedAccess": true,
+        "exactOptionalPropertyTypes": true,
+        "verbatimModuleSyntax": true
+    }
+}

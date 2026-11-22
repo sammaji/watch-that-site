@@ -1,0 +1,10 @@
+{
+    "extends": "@watchthatsite/tsconfig/node-service.json",
+    "compilerOptions": {
+        "rootDir": "./src",
+        // page.evaluate callbacks run in the browser and use DOM types.
+        "lib": ["esnext", "dom", "dom.iterable"],
+        "outDir": "./build"
+    },
+    "include": ["src/**/*.ts"]
+}

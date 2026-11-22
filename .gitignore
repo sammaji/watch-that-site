@@ -1,0 +1,29 @@
+# Node
+node_modules
+.pnpm-store
+.turbo
+
+# Next.js
+apps/**/.next
+
+# Rust
+target
+
+# Env
+.env
+.env.local
+.env.*.local
+*.db
+*.db-journal
+
+.idea
+# Misc
+.DS_Store
+.vscode
+
+build
+dist
+
+.agents
+.claude
+.opencode

@@ -1,0 +1,26 @@
+{
+    /* Node-targeted build of the shared + client code. Deliberately separate
+       from tsconfig.json: that one types the Worker against the workerd
+       globals, which must not leak into a package consumed by Node services. */
+    "compilerOptions": {
+        "target": "es2022",
+        "lib": ["es2023"],
+        "module": "nodenext",
+        "moduleResolution": "nodenext",
+        "types": ["node"],
+        "rootDir": "src",
+        "outDir": "dist",
+        "declaration": true,
+        "declarationMap": true,
+        "sourceMap": true,
+        "strict": true,
+        "exactOptionalPropertyTypes": true,
+        "noUncheckedIndexedAccess": true,
+        "verbatimModuleSyntax": true,
+        "isolatedModules": true,
+        "forceConsistentCasingInFileNames": true,
+        "skipLibCheck": true,
+        "noEmit": false
+    },
+    "include": ["src/client/**/*.ts", "src/shared/**/*.ts"]
+}

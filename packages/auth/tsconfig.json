@@ -1,0 +1,4 @@
+{
+    "extends": "@watchthatsite/tsconfig/react-library.json",
+    "include": ["src/**/*.ts", "src/**/*.tsx"]
+}

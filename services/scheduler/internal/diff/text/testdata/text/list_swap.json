@@ -1,0 +1,82 @@
+{
+  "a": [
+    {
+      "id": "h",
+      "path": "/body/h2[h]",
+      "tag": "h2",
+      "text": "Features"
+    },
+    {
+      "id": "l1",
+      "path": "/body/li[l1]",
+      "tag": "li",
+      "text": "Unlimited projects"
+    },
+    {
+      "id": "l2",
+      "path": "/body/li[l2]",
+      "tag": "li",
+      "text": "Priority support"
+    },
+    {
+      "id": "l3",
+      "path": "/body/li[l3]",
+      "tag": "li",
+      "text": "Custom domains"
+    }
+  ],
+  "b": [
+    {
+      "id": "h",
+      "path": "/body/h2[h]",
+      "tag": "h2",
+      "text": "Features"
+    },
+    {
+      "id": "l2",
+      "path": "/body/li[l2]",
+      "tag": "li",
+      "text": "Priority support"
+    },
+    {
+      "id": "l1",
+      "path": "/body/li[l1]",
+      "tag": "li",
+      "text": "Unlimited projects"
+    },
+    {
+      "id": "l3",
+      "path": "/body/li[l3]",
+      "tag": "li",
+      "text": "Custom domains"
+    }
+  ],
+  "expected": {
+    "ops": [
+      {
+        "op": "move",
+        "block_id": "l1",
+        "from_block_id": "l1",
+        "text": "Unlimited projects",
+        "from": 1,
+        "to": 2,
+        "context_before": [
+          "Features",
+          "Priority support"
+        ],
+        "context_after": [
+          "Custom domains"
+        ]
+      }
+    ],
+    "magnitude": {
+      "words_added": 0,
+      "words_removed": 0,
+      "blocks_changed": 0,
+      "moves": 1,
+      "net_added": 0,
+      "net_removed": 0,
+      "change_ratio": 0
+    }
+  }
+}

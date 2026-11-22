@@ -1,0 +1,17 @@
+{
+    "extends": "@watchthatsite/tsconfig/nextjs.json",
+    "compilerOptions": {
+        "target": "ESNext",
+        "paths": {
+            "@/*": ["./*"],
+            "collections/*": ["./.source/*"]
+        }
+    },
+    "include": [
+        "next-env.d.ts",
+        "**/*.ts",
+        "**/*.tsx",
+        ".next/types/**/*.ts",
+        ".next/dev/types/**/*.ts"
+    ]
+}

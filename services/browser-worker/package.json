@@ -1,0 +1,42 @@
+{
+    "name": "browser-worker",
+    "version": "1.0.0",
+    "description": "Browser worker: takes Captures (replaying Macros first) and runs the Agent",
+    "type": "module",
+    "main": "index.js",
+    "scripts": {
+        "build": "tsc",
+        "start": "tsx --env-file=.env src/index.ts",
+        "test": "vitest run",
+        "test:watch": "vitest",
+        "dev": "tsx --watch --env-file=.env src/index.ts",
+        "typecheck": "tsc --noEmit"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "packageManager": "pnpm@10.33.2",
+    "devDependencies": {
+        "@types/amqplib": "^0.10.8",
+        "@types/node": "^25.9.1",
+        "@types/pngjs": "^6.0.5",
+        "@watchthatsite/tsconfig": "workspace:*",
+        "typescript": "^6.0.3",
+        "vitest": "^3.2.4"
+    },
+    "dependencies": {
+        "@ghostery/adblocker-playwright": "^2.18.2",
+        "@watchthatsite/cloudflare": "workspace:*",
+        "@watchthatsite/db": "workspace:*",
+        "@watchthatsite/types": "workspace:*",
+        "amqplib": "^0.10.9",
+        "openai": "^7.55.0",
+        "pino": "^10.3.1",
+        "playwright-core": "^1.60.0",
+        "pngjs": "^7.0.0",
+        "postgres": "^3.4.9",
+        "sharp": "^0.35.5",
+        "tldts": "^7.4.16",
+        "tsx": "^4.22.4"
+    }
+}

@@ -1,0 +1,10 @@
+{
+  "content": "Hourly digest: 7 changes on 3 monitors",
+  "embeds": [
+    {
+      "title": "Hourly digest: 7 changes on 3 monitors",
+      "description": "**Acme Pricing**\n• [Price 59 → 49](https://app.watchthat.test/changes/c3) · Sep 27, 10:07 UTC\n• [Price 49 → 59](https://app.watchthat.test/changes/c1) · Sep 27, 10:09 UTC\n**Blog \u003cnews\\\u003e**\n• [New: Launch week recap](https://app.watchthat.test/changes/c6) · Sep 27, 10:04 UTC\n• [3 words added, 1 removed](https://app.watchthat.test/changes/c4) · Sep 27, 10:06 UTC\n**Careers**\n• [12 words added](https://app.watchthat.test/changes/c7) · Sep 27, 10:03 UTC\n• [Looks different (4 % of the page)](https://app.watchthat.test/changes/c5) · Sep 27, 10:05 UTC\n• [New: Staff Designer — Remote](https://app.watchthat.test/changes/c2) · Sep 27, 10:08 UTC",
+      "color": 2066493
+    }
+  ]
+}

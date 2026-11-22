@@ -1,0 +1,11 @@
+{
+    "name": "@watchthatsite/tsconfig",
+    "version": "0.1.0",
+    "private": true,
+    "files": [
+        "base.json",
+        "react-library.json",
+        "nextjs.json",
+        "node-service.json"
+    ]
+}

@@ -1,0 +1,25 @@
+37 words added
+Careers <Jobs & Openings> — https://acme.test/careers?team=all&remote=1
+
+The agent could not be reached, so this difference was sent without its review
+
+  Open roles
++ Senior Go Engineer — Remote
+
+  Open roles
++ Staff Designer — Remote
+
+  Open roles
++ Product Manager, Growth — Remote
+
+  Open roles
++ Support Lead <EMEA> — Remote
+
+  Open roles
++ Data Analyst — Remote
+
++7 more changes: https://app.watchthat.test/changes/c7d9e1f3-3333-4444-8555-666677778888
+
+View change: https://app.watchthat.test/changes/c7d9e1f3-3333-4444-8555-666677778888
+This was noise: https://app.watchthat.test/changes/c7d9e1f3-3333-4444-8555-666677778888?feedback=noise
+Pause this Monitor: https://app.watchthat.test/monitors/3d5a7c10-aaaa-4bbb-8ccc-ddddeeeeffff?pause=1

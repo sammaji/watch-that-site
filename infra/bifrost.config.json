@@ -1,0 +1,125 @@
+{
+    "$schema": "https://www.getbifrost.ai/schema",
+    "config_store": {
+        "enabled": true,
+        "type": "postgres",
+        "config": {
+            "host": "watchthatsite-bifrost-postgres",
+            "port": "5432",
+            "user": "env.BIFROST_POSTGRES_USER",
+            "password": "env.BIFROST_POSTGRES_PASSWORD",
+            "db_name": "env.BIFROST_POSTGRES_DATABASE",
+            "ssl_mode": "disable"
+        }
+    },
+    "logs_store": {
+        "enabled": true,
+        "type": "postgres",
+        "config": {
+            "host": "watchthatsite-bifrost-postgres",
+            "port": "5432",
+            "user": "env.BIFROST_POSTGRES_USER",
+            "password": "env.BIFROST_POSTGRES_PASSWORD",
+            "db_name": "env.BIFROST_POSTGRES_DATABASE",
+            "ssl_mode": "disable"
+        }
+    },
+    "client": {
+        "enforce_auth_on_inference": true,
+        "disable_content_logging": true
+    },
+    "providers": {
+        "wts": {
+            "keys": [
+                {
+                    "name": "wts-default-key",
+                    "value": "env.OPENAI_API_KEY",
+                    "models": [
+                        "gpt-6.2-astra",
+                        "gpt-6-luna"
+                    ],
+                    "weight": 1.0
+                }
+            ],
+            "network_config": {
+                "base_url": "https://api.openai.com"
+            },
+            "custom_provider_config": {
+                "base_provider_type": "openai",
+                "allowed_requests": {
+                    "chat_completion": true,
+                    "chat_completion_stream": true,
+                    "responses": true,
+                    "responses_stream": true
+                }
+            }
+        }
+    },
+    "governance": {
+        "auth_config": {
+            "is_enabled": true,
+            "admin_username": "env.BIFROST_ADMIN_USERNAME",
+            "admin_password": "env.BIFROST_ADMIN_PASSWORD"
+        },
+        "routing_rules": [
+            {
+                "name": "wts-pro",
+                "cel_expression": "provider == 'wts' && model == 'wts-pro'",
+                "priority": 1,
+                "targets": [
+                    {
+                        "provider": "wts",
+                        "model": "gpt-6.2-astra",
+                        "provider_key_name": "wts-default-key",
+                        "weight": 1.0
+                    }
+                ]
+            },
+            {
+                "name": "wts-mini",
+                "cel_expression": "provider == 'wts' && model == 'wts-mini'",
+                "priority": 2,
+                "targets": [
+                    {
+                        "provider": "wts",
+                        "model": "gpt-6-luna",
+                        "provider_key_name": "wts-default-key",
+                        "weight": 1.0
+                    }
+                ]
+            }
+        ],
+        "pricing_overrides": [
+            {
+                "id": "wts-price-gpt-6.2-astra",
+                "name": "wts: gpt-6.2-astra at OpenAI list price",
+                "scope_kind": "provider",
+                "provider_id": "wts",
+                "match_type": "exact",
+                "pattern": "gpt-6.2-astra",
+                "request_types": [
+                    "chat_completion",
+                    "chat_completion_stream",
+                    "responses",
+                    "responses_stream"
+                ],
+                "pricing_patch": "{\"input_cost_per_token\":8e-06,\"output_cost_per_token\":4e-05,\"cache_read_input_token_cost\":4e-07,\"cache_creation_input_token_cost\":1e-05,\"input_cost_per_token_above_272k_tokens\":1.6e-05,\"output_cost_per_token_above_272k_tokens\":6e-05,\"cache_read_input_token_cost_above_272k_tokens\":8e-07}"
+            },
+            {
+                "id": "wts-price-gpt-6-luna",
+                "name": "wts: gpt-6-luna at OpenAI list price",
+                "scope_kind": "provider",
+                "provider_id": "wts",
+                "match_type": "exact",
+                "pattern": "gpt-6-luna",
+                "request_types": [
+                    "chat_completion",
+                    "chat_completion_stream",
+                    "responses",
+                    "responses_stream"
+                ],
+                "pricing_patch": "{\"input_cost_per_token\":1e-07,\"output_cost_per_token\":5e-07,\"cache_read_input_token_cost\":1e-08,\"cache_creation_input_token_cost\":1.25e-07,\"input_cost_per_token_above_272k_tokens\":2e-07,\"output_cost_per_token_above_272k_tokens\":7.5e-07,\"cache_read_input_token_cost_above_272k_tokens\":2e-08}"
+            }
+        ]
+    }
+}

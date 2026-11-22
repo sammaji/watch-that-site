@@ -1,0 +1,36 @@
+{
+    "name": "@watchthatsite/cloudflare",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+        "build": "tsc -p tsconfig.client.json",
+        "cf-typegen": "wrangler types",
+        "deploy": "wrangler deploy",
+        "dev": "wrangler dev",
+        "start": "wrangler dev",
+        "test": "vitest run",
+        "typecheck": "tsc --noEmit && tsc -p tsconfig.client.json --noEmit"
+    },
+    "devDependencies": {
+        "@cloudflare/vitest-plugin": "^1.1.6",
+        "@types/node": "^26.5.0",
+        "typescript": "^5.5.2",
+        "vitest": "^4.1.11",
+        "wrangler": "^4.130.0"
+    },
+    "type": "module",
+    "files": [
+        "dist"
+    ],
+    "exports": {
+        "./client": {
+            "types": "./dist/client/index.d.ts",
+            "default": "./dist/client/index.js"
+        },
+        "./shared": {
+            "types": "./dist/shared/index.d.ts",
+            "default": "./dist/shared/index.js"
+        }
+    }
+
+}

@@ -1,0 +1,67 @@
+{
+  "text": "Careers \u003cJobs \u0026 Openings\u003e: Twelve new remote roles were posted, including a Senior Go Engineer.",
+  "blocks": [
+    {
+      "type": "header",
+      "text": {
+        "type": "plain_text",
+        "text": "Twelve new remote roles were posted, including a Senior Go Engineer.",
+        "emoji": true
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*\u003chttps://acme.test/careers?team=all\u0026remote=1|Careers \u0026lt;Jobs \u0026amp; Openings\u0026gt;\u003e*"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*New role: Senior Go Engineer*\nSenior Go Engineer — Remote\n\n*New role: Staff Designer*\nStaff Designer — Remote\n\n*New role: Product Manager, Growth*\nProduct Manager, Growth — Remote\n\n*New role: Support Lead \u0026lt;EMEA\u0026gt;*\nSupport Lead \u0026lt;EMEA\u0026gt; — Remote\n\n*New role: Data Analyst*\nData Analyst — Remote"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "\u003chttps://app.watchthat.test/changes/c7d9e1f3-3333-4444-8555-666677778888|+7 more\u003e"
+      }
+    },
+    {
+      "type": "actions",
+      "elements": [
+        {
+          "type": "button",
+          "text": {
+            "type": "plain_text",
+            "text": "View change"
+          },
+          "action_id": "view_change",
+          "url": "https://app.watchthat.test/changes/c7d9e1f3-3333-4444-8555-666677778888",
+          "style": "primary"
+        },
+        {
+          "type": "button",
+          "text": {
+            "type": "plain_text",
+            "text": "This was Noise"
+          },
+          "action_id": "mark_noise",
+          "url": "https://app.watchthat.test/changes/c7d9e1f3-3333-4444-8555-666677778888?feedback=noise"
+        },
+        {
+          "type": "button",
+          "text": {
+            "type": "plain_text",
+            "text": "Pause"
+          },
+          "action_id": "pause",
+          "url": "https://app.watchthat.test/monitors/3d5a7c10-aaaa-4bbb-8ccc-ddddeeeeffff?pause=1"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+The hero banner now advertises the winter sale.
+Acme Home — https://acme.test/
+
+- Hero banner replaced
+  A photo of the autumn collection → A "Winter sale: 30 % off" banner
+
+Before and after: https://r2.test/changes/m/5c2e8a90-crop.png?X-Amz-Signature=abc&X-Amz-Expires=604800
+
+View change: https://app.watchthat.test/changes/5c2e8a90-2222-4333-8444-555566667777
+This was noise: https://app.watchthat.test/changes/5c2e8a90-2222-4333-8444-555566667777?feedback=noise
+Pause this Monitor: https://app.watchthat.test/monitors/3d5a7c10-aaaa-4bbb-8ccc-ddddeeeeffff?pause=1

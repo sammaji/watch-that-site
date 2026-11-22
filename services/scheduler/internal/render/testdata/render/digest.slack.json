@@ -1,0 +1,34 @@
+{
+  "text": "Hourly digest: 7 changes on 3 monitors",
+  "blocks": [
+    {
+      "type": "header",
+      "text": {
+        "type": "plain_text",
+        "text": "Hourly digest: 7 changes on 3 monitors",
+        "emoji": true
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*\u003chttps://app.watchthat.test/monitors/m-pricing|Acme Pricing\u003e*\n• \u003chttps://app.watchthat.test/changes/c3|Price 59 → 49\u003e · Sep 27, 10:07 UTC\n• \u003chttps://app.watchthat.test/changes/c1|Price 49 → 59\u003e · Sep 27, 10:09 UTC"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*\u003chttps://app.watchthat.test/monitors/m-blog|Blog \u0026lt;news\u0026gt;\u003e*\n• \u003chttps://app.watchthat.test/changes/c6|New: Launch week recap\u003e · Sep 27, 10:04 UTC\n• \u003chttps://app.watchthat.test/changes/c4|3 words added, 1 removed\u003e · Sep 27, 10:06 UTC"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*\u003chttps://app.watchthat.test/monitors/m-careers|Careers\u003e*\n• \u003chttps://app.watchthat.test/changes/c7|12 words added\u003e · Sep 27, 10:03 UTC\n• \u003chttps://app.watchthat.test/changes/c5|Looks different (4 % of the page)\u003e · Sep 27, 10:05 UTC\n• \u003chttps://app.watchthat.test/changes/c2|New: Staff Designer — Remote\u003e · Sep 27, 10:08 UTC"
+      }
+    }
+  ]
+}

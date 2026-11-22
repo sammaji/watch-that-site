@@ -1,0 +1,220 @@
+{
+    "vhosts": [{ "name": "/" }],
+    "users": [
+        {
+            "name": "${RABBITMQ_USER}",
+            "password": "${RABBITMQ_PASSWORD}",
+            "tags": "administrator"
+        }
+    ],
+    "permissions": [
+        {
+            "user": "${RABBITMQ_USER}",
+            "vhost": "/",
+            "configure": ".*",
+            "write": ".*",
+            "read": ".*"
+        }
+    ],
+    "exchanges": [
+        {
+            "name": "notifications",
+            "vhost": "/",
+            "type": "direct",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {}
+        },
+        {
+            "name": "monitor_runs",
+            "vhost": "/",
+            "type": "direct",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {}
+        },
+        {
+            "name": "dlq",
+            "vhost": "/",
+            "type": "direct",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {}
+        }
+    ],
+    "queues": [
+        {
+            "name": "notifications.email",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {
+                "x-dead-letter-exchange": "dlq",
+                "x-dead-letter-routing-key": "dlq.notifications",
+                "x-queue-type": "quorum"
+            }
+        },
+        {
+            "name": "notifications.slack",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {
+                "x-dead-letter-exchange": "dlq",
+                "x-dead-letter-routing-key": "dlq.notifications",
+                "x-queue-type": "quorum"
+            }
+        },
+        {
+            "name": "notifications.telegram",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {
+                "x-dead-letter-exchange": "dlq",
+                "x-dead-letter-routing-key": "dlq.notifications",
+                "x-queue-type": "quorum"
+            }
+        },
+        {
+            "name": "notifications.discord",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {
+                "x-dead-letter-exchange": "dlq",
+                "x-dead-letter-routing-key": "dlq.notifications",
+                "x-queue-type": "quorum",
+                "x-delivery-limit": 5
+            }
+        },
+        {
+            "name": "notifications.webhook",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {
+                "x-dead-letter-exchange": "dlq",
+                "x-dead-letter-routing-key": "dlq.notifications",
+                "x-queue-type": "quorum",
+                "x-delivery-limit": 5
+            }
+        },
+        {
+            "name": "monitor_runs.scheduled",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {
+                "x-dead-letter-exchange": "dlq",
+                "x-dead-letter-routing-key": "dlq.monitor_runs",
+                "x-queue-type": "quorum",
+                "x-delivery-limit": 5
+            }
+        },
+        {
+            "name": "monitor_runs.scraped",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {
+                "x-dead-letter-exchange": "dlq",
+                "x-dead-letter-routing-key": "dlq.monitor_runs",
+                "x-queue-type": "quorum",
+                "x-delivery-limit": 5
+            }
+        },
+        {
+            "name": "dlq.notifications",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {
+                "x-queue-type": "quorum"
+            }
+        },
+        {
+            "name": "dlq.monitor_runs",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {
+                "x-queue-type": "quorum"
+            }
+        }
+    ],
+    "bindings": [
+        {
+            "source": "notifications",
+            "vhost": "/",
+            "destination": "notifications.email",
+            "destination_type": "queue",
+            "routing_key": "email",
+            "arguments": {}
+        },
+        {
+            "source": "notifications",
+            "vhost": "/",
+            "destination": "notifications.slack",
+            "destination_type": "queue",
+            "routing_key": "slack",
+            "arguments": {}
+        },
+        {
+            "source": "notifications",
+            "vhost": "/",
+            "destination": "notifications.telegram",
+            "destination_type": "queue",
+            "routing_key": "telegram",
+            "arguments": {}
+        },
+        {
+            "source": "notifications",
+            "vhost": "/",
+            "destination": "notifications.discord",
+            "destination_type": "queue",
+            "routing_key": "discord",
+            "arguments": {}
+        },
+        {
+            "source": "notifications",
+            "vhost": "/",
+            "destination": "notifications.webhook",
+            "destination_type": "queue",
+            "routing_key": "webhook",
+            "arguments": {}
+        },
+        {
+            "source": "dlq",
+            "vhost": "/",
+            "destination": "dlq.notifications",
+            "destination_type": "queue",
+            "routing_key": "dlq.notifications",
+            "arguments": {}
+        },
+        {
+            "source": "monitor_runs",
+            "vhost": "/",
+            "destination": "monitor_runs.scheduled",
+            "destination_type": "queue",
+            "routing_key": "monitor_scrape_job",
+            "arguments": {}
+        },
+        {
+            "source": "monitor_runs",
+            "vhost": "/",
+            "destination": "monitor_runs.scraped",
+            "destination_type": "queue",
+            "routing_key": "monitor_scrape_result",
+            "arguments": {}
+        },
+        {
+            "source": "dlq",
+            "vhost": "/",
+            "destination": "dlq.monitor_runs",
+            "destination_type": "queue",
+            "routing_key": "dlq.monitor_runs",
+            "arguments": {}
+        }
+    ]
+}

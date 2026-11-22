@@ -1,0 +1,53 @@
+<meta name="referrer" content="no-referrer" />
+<style>
+    #__vm_picker_overlay {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 2147483646;
+        display: none;
+    }
+    #__vm_picker_box {
+        position: absolute;
+        box-sizing: border-box;
+        border: calc(1.5px * var(--vm-ui, 1)) solid #2563eb;
+        background: rgba(37, 99, 235, 0.08);
+    }
+    #__vm_picker_badge {
+        position: absolute;
+        bottom: 100%;
+        left: calc(-1.5px * var(--vm-ui, 1));
+        max-width: 240px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+        font-weight: 500;
+        font-size: calc(10px * var(--vm-ui, 1));
+        line-height: calc(14px * var(--vm-ui, 1));
+        padding: 0 calc(4px * var(--vm-ui, 1));
+        color: #fff;
+        background: #2563eb;
+        border-radius: calc(2px * var(--vm-ui, 1)) calc(2px * var(--vm-ui, 1)) 0 0;
+    }
+    #__vm_picker_badge.__vm_inside {
+        bottom: auto;
+        top: 0;
+        left: 0;
+        border-radius: 0 0 calc(2px * var(--vm-ui, 1)) 0;
+    }
+    #__vm_picker_status {
+        position: fixed;
+        display: none;
+        right: 16px;
+        bottom: 16px;
+        z-index: 2147483647;
+        font: 8px;
+        padding: 10px 12px;
+        color: white;
+        background: rgba(2, 6, 23, 0.9);
+        border: 1px solid rgba(6, 182, 212, 0.45);
+        border-radius: 999px;
+        box-shadow: 0 12px 30px rgba(2, 6, 23, 0.35);
+    }
+</style>

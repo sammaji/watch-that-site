@@ -1,0 +1,11 @@
+# Copy to .dev.vars for `wrangler dev`; set real values with
+# `npx wrangler secret put <NAME>` for a deployment.
+
+# Shared bearer token: PUT, DELETE, listing, and bearer reads on /objects.
+# The browser worker and the scheduler (Worker-only mode) send it.
+R2_API_TOKEN=change-me
+
+# HMAC key for signed read URLs (?exp=&sig=). The web app signs with it
+# (apps/web, R2_SIGNING_SECRET) and so does the scheduler (r2.Sign).
+# Generate one with: openssl rand -hex 32
+R2_SIGNING_SECRET=change-me-too

@@ -1,0 +1,283 @@
+{
+  "version": 2,
+  "id": "0c9f2d1e-8b7a-4c3d-9e2f-1a0b9c8d7e6f",
+  "monitor": {
+    "id": "7f1f5f3e-4e3b-4e7a-9d8e-2f1f7c3a9b10",
+    "name": "Acme pricing",
+    "url": "https://acme.test/pricing",
+    "instructions": "Tell me when a plan's price changes. Ignore the testimonials."
+  },
+  "from": {
+    "run_id": "1b2c3d4e-5f60-4718-8a9b-0c1d2e3f4a5b",
+    "at": "2026-11-19T10:00:00Z",
+    "screenshot": "captures/m/r1/shot.png",
+    "blocks": "captures/m/r1/blocks.json.gz"
+  },
+  "to": {
+    "run_id": "2c3d4e5f-6071-4829-9bac-1d2e3f4a5b6c",
+    "at": "2026-11-20T10:00:00Z",
+    "screenshot": "captures/m/r2/shot.png",
+    "blocks": "captures/m/r2/blocks.json.gz"
+  },
+  "status": "change",
+  "summary": "The Pro plan went from $49 to $59 per month.",
+  "items": [
+    {
+      "title": "Pro plan price raised",
+      "before": "$49/month",
+      "after": "$59/month",
+      "kind": "text",
+      "matches": "a plan's price changes",
+      "ops": [
+        0
+      ],
+      "regions": [],
+      "rect_before": [
+        120,
+        1792,
+        640,
+        28
+      ],
+      "rect_after": [
+        120,
+        1840,
+        640,
+        28
+      ]
+    },
+    {
+      "title": "Price comparison chart redrawn",
+      "before": "Pro bar at $49",
+      "after": "Pro bar at $59",
+      "kind": "visual",
+      "matches": "a plan's price changes",
+      "ops": [],
+      "regions": [
+        0
+      ],
+      "rect_before": [
+        120,
+        1952,
+        480,
+        260
+      ],
+      "rect_after": [
+        120,
+        2000,
+        480,
+        260
+      ]
+    }
+  ],
+  "ignored": [
+    {
+      "note": "A new banner about the autumn sale",
+      "reason": "Not a plan price."
+    }
+  ],
+  "why": [
+    {
+      "kind": "agent",
+      "detail": "The agent found a change that matches this Monitor's instructions."
+    },
+    {
+      "kind": "persistence",
+      "reason": "persistence",
+      "detail": "Seen on two consecutive checks."
+    }
+  ],
+  "suppressed_by": [],
+  "magnitude": {
+    "words_added": 1,
+    "words_removed": 1,
+    "blocks_changed": 1,
+    "moves": 0,
+    "change_ratio": 0.05,
+    "net_added": 0,
+    "net_removed": 0,
+    "area_ratio": 0.004
+  },
+  "text": {
+    "ops": [
+      {
+        "op": "modify",
+        "block_id": "b17",
+        "from_block_id": "b17",
+        "path": "/html/body/main/section[2]/ul/li[3]",
+        "tag": "li",
+        "rect": [
+          120,
+          1840,
+          640,
+          28
+        ],
+        "from_rect": [
+          120,
+          1792,
+          640,
+          28
+        ],
+        "tokens": [
+          {
+            "op": "=",
+            "text": "Pro plan — "
+          },
+          {
+            "op": "-",
+            "text": "$49"
+          },
+          {
+            "op": "+",
+            "text": "$59"
+          },
+          {
+            "op": "=",
+            "text": "/month"
+          }
+        ],
+        "from": 0,
+        "to": 0,
+        "context_before": [
+          "Starter plan — $19/month"
+        ],
+        "context_after": [
+          "Enterprise — contact us"
+        ],
+        "section": "plans"
+      },
+      {
+        "op": "ignored",
+        "block_id": "b40",
+        "from_block_id": "b40",
+        "path": "/html/body/main/section[3]/blockquote",
+        "tag": "blockquote",
+        "text": "“We switched in a day.”",
+        "old_text": "“Support answered in minutes.”",
+        "from": 0,
+        "to": 0,
+        "masked": [
+          "reltime"
+        ],
+        "section": "testimonials"
+      }
+    ],
+    "ignored_count": 1,
+    "masked": [
+      "reltime"
+    ]
+  },
+  "visual": {
+    "regions": [
+      {
+        "box": [
+          120,
+          2000,
+          480,
+          260
+        ],
+        "kind": "changed",
+        "pixels": 812,
+        "blocks": [
+          "b21"
+        ],
+        "from_box": [
+          120,
+          1952,
+          480,
+          260
+        ],
+        "section": "plans"
+      }
+    ],
+    "shift": {
+      "from_y": 148,
+      "dy": 48
+    },
+    "area_ratio": 0.004,
+    "size_before": [
+      1366,
+      3000
+    ],
+    "size_after": [
+      1366,
+      3048
+    ],
+    "diff_image": "changes/m/c-diff.png",
+    "crop": "changes/m/c-crop.png"
+  },
+  "agent": {
+    "relevant": true,
+    "importance": "high",
+    "model": "gpt-5.1",
+    "unavailable": false,
+    "error": "",
+    "input_tokens": 4210,
+    "output_tokens": 318,
+    "steps": 2
+  },
+  "sections": [
+    {
+      "id": "plans",
+      "name": "Pricing table",
+      "how": "both"
+    },
+    {
+      "id": "testimonials",
+      "name": "Testimonials",
+      "how": "ignore"
+    }
+  ],
+  "cumulative": {
+    "from": {
+      "run_id": "0a1b2c3d-4e5f-4607-8192-a3b4c5d6e7f8",
+      "at": "2026-11-17T10:00:00Z",
+      "screenshot": "captures/m/r0/shot.png",
+      "blocks": "captures/m/r0/blocks.json.gz"
+    },
+    "text": {
+      "ops": [
+        {
+          "op": "modify",
+          "block_id": "b17",
+          "from_block_id": "b17",
+          "path": "/html/body/main/section[2]/ul/li[3]",
+          "tag": "li",
+          "tokens": [
+            {
+              "op": "=",
+              "text": "Pro plan — "
+            },
+            {
+              "op": "-",
+              "text": "$45"
+            },
+            {
+              "op": "+",
+              "text": "$59"
+            },
+            {
+              "op": "=",
+              "text": "/month"
+            }
+          ],
+          "from": 0,
+          "to": 0,
+          "section": "plans"
+        }
+      ],
+      "ignored_count": 0,
+      "masked": []
+    },
+    "magnitude": {
+      "words_added": 1,
+      "words_removed": 1,
+      "blocks_changed": 1,
+      "moves": 0,
+      "change_ratio": 0.05,
+      "net_added": 0,
+      "net_removed": 0,
+      "area_ratio": 0
+    }
+  },
+  "created_at": "2026-11-20T10:00:00Z"
+}

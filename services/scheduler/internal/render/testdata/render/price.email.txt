@@ -1,0 +1,11 @@
+The Pro plan went from $49 to $59 per month.
+Acme Pricing — https://acme.test/pricing
+
+Seen on two consecutive checks
+
+- Pro plan price raised · Pricing table
+  $49/month <billed yearly> → $59/month <billed yearly>
+
+View change: https://app.watchthat.test/changes/8a1f0c2e-1111-4222-8333-444455556666
+This was noise: https://app.watchthat.test/changes/8a1f0c2e-1111-4222-8333-444455556666?feedback=noise
+Pause this Monitor: https://app.watchthat.test/monitors/3d5a7c10-aaaa-4bbb-8ccc-ddddeeeeffff?pause=1

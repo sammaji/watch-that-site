@@ -1,0 +1,20 @@
+# VCS
+.git
+.gitignore
+
+# Docker
+dockerfile
+.dockerignore
+
+# Go test + docs
+*_test.go
+README.md
+
+# Editor / OS
+.idea
+.vscode
+.DS_Store
+
+# Local build artifacts
+proxy
+server

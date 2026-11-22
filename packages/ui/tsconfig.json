@@ -1,0 +1,10 @@
+{
+    "extends": "@watchthatsite/tsconfig/react-library.json",
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@watchthatsite/ui/*": ["./src/*"]
+        }
+    },
+    "include": ["src/**/*.ts", "src/**/*.tsx"]
+}

@@ -1,0 +1,39 @@
+{
+    "name": "@watchthatsite/ui",
+    "version": "0.1.0",
+    "private": true,
+    "type": "module",
+    "sideEffects": [
+        "**/*.css"
+    ],
+    "exports": {
+        "./styles.css": "./src/styles/globals.css",
+        "./lib/utils": "./src/lib/utils.ts",
+        "./components/*": "./src/components/*.tsx",
+        "./hooks/*": "./src/hooks/*.ts"
+    },
+    "peerDependencies": {
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0",
+        "react-hook-form": "^7.65.0"
+    },
+    "dependencies": {
+        "class-variance-authority": "^0.7.1",
+        "clsx": "^2.1.1",
+        "embla-carousel-react": "^8.6.0",
+        "lucide-react": "^1.8.0",
+        "radix-ui": "^1.4.3",
+        "react": "19.2.3",
+        "react-dom": "19.2.3",
+        "react-resizable-panels": "^4.10.0",
+        "tailwind-merge": "^3.5.0",
+        "tailwindcss": "^4.2.1"
+    },
+    "devDependencies": {
+        "@types/node": "^20.19.34",
+        "@types/react": "^19.2.14",
+        "@types/react-dom": "^19.2.3",
+        "@watchthatsite/tsconfig": "workspace:*",
+        "typescript": "^5.9.3"
+    }
+}

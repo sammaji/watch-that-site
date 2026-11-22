@@ -1,0 +1,11 @@
+packages:
+    - "apps/*"
+    - "packages/*"
+    - "services/*"
+    - "tests"
+
+# packages/cloudflare needs these to build their native/platform binaries.
+# Without the allowlist pnpm skips the postinstall and wrangler cannot run.
+onlyBuiltDependencies:
+    - esbuild
+    - workerd

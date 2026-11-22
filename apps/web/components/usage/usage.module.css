@@ -1,0 +1,122 @@
+/*
+ * Chart tokens for the Usage page. Series colours are the validated reference
+ * palette (light and dark are separate steps of the same hues, each checked
+ * against its own surface); text never takes a series colour. Dark values
+ * follow the app's theme class from next-themes.
+ */
+.root {
+    --surface: var(--card, #fcfcfb);
+    --ink: #0b0b0b;
+    --ink-2: #52514e;
+    --ink-3: #8a8984;
+    --grid: rgba(11, 11, 11, 0.08);
+    --series-1: #2a78d6;
+    --series-2: #eb6834;
+    --series-3: #1baf7a;
+    --series-4: #eda100;
+    --series-other: #8a8984;
+    --critical: #d03b3b;
+    --warning: #fab219;
+    --track: #cde2fb;
+    /* Three steps of the blue ramp, light to dark, for one quantity split in parts. */
+    --blue-1: #9ec5f4;
+    --blue-2: #3987e5;
+    --blue-3: #184f95;
+    --good: #0ca30c;
+    --empty: rgba(11, 11, 11, 0.08);
+}
+
+:global(.dark) .root {
+    --ink: #f0efec;
+    --ink-2: #c3c2b7;
+    --ink-3: #8f8e86;
+    --grid: rgba(240, 239, 236, 0.1);
+    --series-1: #3987e5;
+    --series-2: #d95926;
+    --series-3: #199e70;
+    --series-4: #c98500;
+    --series-other: #8f8e86;
+    --critical: #d03b3b;
+    --warning: #fab219;
+    --track: #1c3a5e;
+    --blue-1: #86b6ef;
+    --blue-2: #3987e5;
+    --blue-3: #1c5cab;
+    --good: #0ca30c;
+    --empty: rgba(240, 239, 236, 0.1);
+}
+
+.ink {
+    color: var(--ink);
+}
+
+.ink2 {
+    color: var(--ink-2);
+}
+
+.ink3 {
+    color: var(--ink-3);
+}
+
+.swatch {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+    flex-shrink: 0;
+}
+
+.meter {
+    position: relative;
+    height: 8px;
+    border-radius: 999px;
+    background: var(--track);
+    overflow: hidden;
+}
+
+.meterFill {
+    position: absolute;
+    inset: 0 auto 0 0;
+    border-radius: 999px;
+}
+
+.tooltip {
+    position: absolute;
+    pointer-events: none;
+    z-index: 10;
+    min-width: 160px;
+    max-width: 260px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid var(--grid);
+    background: var(--surface);
+    color: var(--ink);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+    font-size: 12px;
+    line-height: 1.45;
+    font-variant-numeric: tabular-nums;
+}
+
+.num {
+    font-variant-numeric: tabular-nums;
+}
+
+.bar {
+    display: flex;
+    gap: 2px;
+    height: 8px;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.uptime {
+    display: flex;
+    gap: 1px;
+    height: 28px;
+}
+
+.uptime > span {
+    flex: 1 1 0;
+    min-width: 1px;
+    border-radius: 1px;
+}

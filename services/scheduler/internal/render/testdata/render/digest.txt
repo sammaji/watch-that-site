@@ -1,0 +1,21 @@
+Hourly digest: 7 changes on 3 monitors
+
+Acme Pricing
+- Price 59 → 49 (Sep 27, 10:07 UTC)
+  https://app.watchthat.test/changes/c3
+- Price 49 → 59 (Sep 27, 10:09 UTC)
+  https://app.watchthat.test/changes/c1
+
+Blog <news>
+- New: Launch week recap (Sep 27, 10:04 UTC)
+  https://app.watchthat.test/changes/c6
+- 3 words added, 1 removed (Sep 27, 10:06 UTC)
+  https://app.watchthat.test/changes/c4
+
+Careers
+- 12 words added (Sep 27, 10:03 UTC)
+  https://app.watchthat.test/changes/c7
+- Looks different (4 % of the page) (Sep 27, 10:05 UTC)
+  https://app.watchthat.test/changes/c5
+- New: Staff Designer — Remote (Sep 27, 10:08 UTC)
+  https://app.watchthat.test/changes/c2

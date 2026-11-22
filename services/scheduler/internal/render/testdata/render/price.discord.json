@@ -1,0 +1,14 @@
+{
+  "content": "Acme Pricing: The Pro plan went from $49 to $59 per month.",
+  "embeds": [
+    {
+      "title": "The Pro plan went from $49 to $59 per month.",
+      "url": "https://app.watchthat.test/changes/8a1f0c2e-1111-4222-8333-444455556666",
+      "description": "Seen on two consecutive checks\n**Pro plan price raised · Pricing table**\n~~$49/month \u003cbilled yearly\\\u003e~~ → $59/month \u003cbilled yearly\\\u003e\n\n[View change](https://app.watchthat.test/changes/8a1f0c2e-1111-4222-8333-444455556666) · [This was Noise](https://app.watchthat.test/changes/8a1f0c2e-1111-4222-8333-444455556666?feedback=noise) · [Pause](https://app.watchthat.test/monitors/3d5a7c10-aaaa-4bbb-8ccc-ddddeeeeffff?pause=1)",
+      "color": 2066493,
+      "footer": {
+        "text": "Acme Pricing"
+      }
+    }
+  ]
+}

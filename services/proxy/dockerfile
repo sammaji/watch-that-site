@@ -1,0 +1,25 @@
+# --- Stage 1: Build ---
+FROM golang:1.26-alpine AS builder
+
+# Install git for fetching dependencies if necessary
+RUN apk add --no-cache git;
+
+WORKDIR /app
+COPY go.mod go.sum ./
+RUN go mod download;
+COPY . .
+
+# Build the binary
+# CGO_ENABLED=0 ensures a statically linked binary (better for scratch/alpine)
+# -ldflags="-s -w" strips debug info to reduce binary size
+RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-s -w" -o server .;
+
+# --- Stage 2: Final Run ---
+FROM alpine:3.22
+
+RUN apk --no-cache add ca-certificates;
+WORKDIR /root/
+COPY --from=builder /app/server .
+
+EXPOSE 8080
+CMD ["./server"]

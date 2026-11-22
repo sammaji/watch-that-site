@@ -1,0 +1,74 @@
+{
+  "a": [
+    {
+      "id": "t",
+      "path": "/body/h1[t]",
+      "tag": "h1",
+      "text": "About us"
+    },
+    {
+      "id": "p",
+      "path": "/body/p[p]",
+      "tag": "p",
+      "text": "Our team builds friendly tools for small businesses across Europe."
+    },
+    {
+      "id": "f",
+      "path": "/body/p[f]",
+      "tag": "p",
+      "text": "Contact"
+    }
+  ],
+  "b": [
+    {
+      "id": "t",
+      "path": "/body/h1[t]",
+      "tag": "h1",
+      "text": "About us"
+    },
+    {
+      "id": "p",
+      "path": "/body/p[p]",
+      "tag": "p",
+      "text": "We are hiring senior engineers in Berlin and Lisbon this spring!"
+    },
+    {
+      "id": "f",
+      "path": "/body/p[f]",
+      "tag": "p",
+      "text": "Contact"
+    }
+  ],
+  "expected": {
+    "ops": [
+      {
+        "op": "modify",
+        "block_id": "p",
+        "from_block_id": "p",
+        "whole": true,
+        "tokens": [
+          {
+            "op": "-",
+            "text": "Our team builds friendly tools for small businesses across Europe."
+          },
+          {
+            "op": "+",
+            "text": "We are hiring senior engineers in Berlin and Lisbon this spring!"
+          }
+        ],
+        "context_before": [
+          "About us"
+        ],
+        "context_after": [
+          "Contact"
+        ]
+      }
+    ],
+    "magnitude": {
+      "words_added": 11,
+      "words_removed": 10,
+      "blocks_changed": 1,
+      "change_ratio": 1
+    }
+  }
+}

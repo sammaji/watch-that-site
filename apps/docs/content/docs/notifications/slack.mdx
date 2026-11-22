@@ -1,0 +1,64 @@
+---
+title: Slack
+description: Configure Slack notifications using incoming webhooks.
+---
+
+Slack notifications are delivered via [Incoming Webhooks](https://api.slack.com/messaging/webhooks). Each webhook URL maps to a specific Slack channel, and you can configure multiple webhooks to post to multiple channels.
+
+## Step 1: Create a Slack App
+
+1. Go to the [Slack API Apps page](https://api.slack.com/apps).
+2. Click **Create New App** > **From scratch**.
+3. Enter an app name (e.g. "WatchThatSite") and select your workspace.
+4. Click **Create App**.
+
+## Step 2: Enable Incoming Webhooks
+
+1. In your app's settings, go to **Feautes** > **Incoming Webhooks** in the left sidebar.
+2. Toggle **Activate Incoming Webhooks** to **On**.
+3. Click **Add New Webhook** at the bottom of the page.
+4. Select the channel where you want notifications posted.
+5. Click **Allow**.
+6. Copy the **Webhook URL**. It looks like:
+    ```
+    https://hooks.slack.com/services/<workspace-id>/<channel-id>/<token>
+    ```
+
+Repeat steps 3-6 for each channel you want to notify.
+
+## Step 3: Configure in WatchThatSite
+
+1. Go to [Notifications](https://app.wts.sammaji.com/notifications) in your dashboard.
+2. Click on Edit under Slack to open the configuration dialog.
+3. Paste your webhook URL.
+4. To send to multiple channels, click **+ Add more** and paste additional webhook URLs.
+5. Click **Save**.
+6. Once saved, enable the slack notifications by toggling the switch.
+
+## Customizing the App Appearance
+
+In your Slack app settings under **Basic Information** > **Display Information**, you can customize:
+
+- **App name** — shown as the sender name.
+- **App icon** — shown as the sender avatar.
+- **Description** — shown in the app directory.
+
+## Troubleshooting
+
+### "invalid_payload" or no message appears
+
+- Verify the webhook URL is correct and complete.
+- Make sure the URL matches the pattern `https://hooks.slack.com/services/...`.
+- Check that the Slack app hasn't been uninstalled from the workspace.
+
+### Webhook returns 403 Forbidden
+
+The Slack app may have been restricted by a workspace admin. Contact your workspace administrator to whitelist the app.
+
+### Webhook returns 404 Not Found or 410 Gone
+
+The webhook URL has been revoked or the channel was deleted. Create a new webhook in your Slack app settings.
+
+### Messages going to the wrong channel
+
+Each webhook URL is tied to a specific channel. Verify you pasted the correct URL for the intended channel. You can check which channel a webhook posts to in your Slack app's **Incoming Webhooks** settings.

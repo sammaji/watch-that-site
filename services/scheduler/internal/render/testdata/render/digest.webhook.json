@@ -1,0 +1,62 @@
+{
+  "event": "digest",
+  "bucket": "hourly",
+  "changes": [
+    {
+      "id": "c3",
+      "monitor_id": "m-pricing",
+      "monitor_name": "Acme Pricing",
+      "summary": "Price 59 → 49",
+      "at": "2026-09-27T10:07:00Z",
+      "url": "https://app.watchthat.test/changes/c3"
+    },
+    {
+      "id": "c1",
+      "monitor_id": "m-pricing",
+      "monitor_name": "Acme Pricing",
+      "summary": "Price 49 → 59",
+      "at": "2026-09-27T10:09:00Z",
+      "url": "https://app.watchthat.test/changes/c1"
+    },
+    {
+      "id": "c6",
+      "monitor_id": "m-blog",
+      "monitor_name": "Blog <news>",
+      "summary": "New: Launch week recap",
+      "at": "2026-09-27T10:04:00Z",
+      "url": "https://app.watchthat.test/changes/c6"
+    },
+    {
+      "id": "c4",
+      "monitor_id": "m-blog",
+      "monitor_name": "Blog <news>",
+      "summary": "3 words added, 1 removed",
+      "at": "2026-09-27T10:06:00Z",
+      "url": "https://app.watchthat.test/changes/c4"
+    },
+    {
+      "id": "c7",
+      "monitor_id": "m-careers",
+      "monitor_name": "Careers",
+      "summary": "12 words added",
+      "at": "2026-09-27T10:03:00Z",
+      "url": "https://app.watchthat.test/changes/c7"
+    },
+    {
+      "id": "c5",
+      "monitor_id": "m-careers",
+      "monitor_name": "Careers",
+      "summary": "Looks different (4 % of the page)",
+      "at": "2026-09-27T10:05:00Z",
+      "url": "https://app.watchthat.test/changes/c5"
+    },
+    {
+      "id": "c2",
+      "monitor_id": "m-careers",
+      "monitor_name": "Careers",
+      "summary": "New: Staff Designer — Remote",
+      "at": "2026-09-27T10:08:00Z",
+      "url": "https://app.watchthat.test/changes/c2"
+    }
+  ]
+}

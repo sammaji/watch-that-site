@@ -1,0 +1,65 @@
+{
+  "text": "Acme Home: The hero banner now advertises the winter sale.",
+  "blocks": [
+    {
+      "type": "header",
+      "text": {
+        "type": "plain_text",
+        "text": "The hero banner now advertises the winter sale.",
+        "emoji": true
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*\u003chttps://acme.test/|Acme Home\u003e*"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Hero banner replaced*\n~A photo of the autumn collection~ → A \"Winter sale: 30 % off\" banner"
+      }
+    },
+    {
+      "type": "image",
+      "image_url": "https://r2.test/changes/m/5c2e8a90-crop.png?X-Amz-Signature=abc\u0026X-Amz-Expires=604800",
+      "alt_text": "Before and after"
+    },
+    {
+      "type": "actions",
+      "elements": [
+        {
+          "type": "button",
+          "text": {
+            "type": "plain_text",
+            "text": "View change"
+          },
+          "action_id": "view_change",
+          "url": "https://app.watchthat.test/changes/5c2e8a90-2222-4333-8444-555566667777",
+          "style": "primary"
+        },
+        {
+          "type": "button",
+          "text": {
+            "type": "plain_text",
+            "text": "This was Noise"
+          },
+          "action_id": "mark_noise",
+          "url": "https://app.watchthat.test/changes/5c2e8a90-2222-4333-8444-555566667777?feedback=noise"
+        },
+        {
+          "type": "button",
+          "text": {
+            "type": "plain_text",
+            "text": "Pause"
+          },
+          "action_id": "pause",
+          "url": "https://app.watchthat.test/monitors/3d5a7c10-aaaa-4bbb-8ccc-ddddeeeeffff?pause=1"
+        }
+      ]
+    }
+  ]
+}
