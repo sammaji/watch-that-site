@@ -27,7 +27,9 @@ export const config = {
          * - /api/auth, /api/auth/*
          * - /login, /signup, /forgot-password, /update-password, /verify
          * - /_next/static, /_next/image, /favicon.ico - static assets
+         * - /images/*, the icons and the manifest - files in public/ that the
+         *   sign-in pages show to people who are not signed in yet
          */
-        "/((?!api/auth|login|signup|forgot-password|update-password|verify|_next/static|_next/image|favicon.ico).*)",
+        "/((?!api/auth|login|signup|forgot-password|update-password|verify|_next/static|_next/image|favicon.ico|favicon-|apple-touch-icon|android-chrome-|site.webmanifest|images/).*)",
     ],
 };

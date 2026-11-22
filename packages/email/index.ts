@@ -4,4 +4,9 @@ export type { Email } from "./layout";
 export { resetPassword } from "./reset-password";
 export { verificationLink } from "./verification-link";
 
-export const resend = new Resend(process.env.RESEND_API_KEY);
+let client: Resend | null = null;
+
+export function resend(): Resend {
+    client ??= new Resend(process.env.RESEND_API_KEY);
+    return client;
+}

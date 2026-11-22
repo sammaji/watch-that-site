@@ -1,0 +1,14 @@
+**/node_modules
+**/.next
+**/.turbo
+**/dist
+**/.wrangler
+**/*.tsbuildinfo
+.git
+.claude
+**/.env
+**/.env.*
+!**/.env.example
+**/.dev.vars
+tests/browser-workers/load-results
+**/coverage

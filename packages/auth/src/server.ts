@@ -16,7 +16,7 @@ export const auth = betterAuth({
         enabled: true,
         requireEmailVerification: true,
         sendResetPassword: async data => {
-            const { data: success, error } = await resend.emails.send({
+            const { data: success, error } = await resend().emails.send({
                 from: `${process.env.SMTP_SENDER_NAME} <${process.env.SMTP_MAIL}>`,
                 to: [data.user.email],
                 ...resetPassword(data.url, data.user.email),
@@ -27,7 +27,7 @@ export const auth = betterAuth({
     },
     emailVerification: {
         sendVerificationEmail: async data => {
-            const { data: success, error } = await resend.emails.send({
+            const { data: success, error } = await resend().emails.send({
                 from: `${process.env.SMTP_SENDER_NAME} <${process.env.SMTP_MAIL}>`,
                 to: [data.user.email],
                 ...verificationLink(data.url, data.user.name),
