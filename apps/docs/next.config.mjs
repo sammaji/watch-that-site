@@ -7,6 +7,16 @@ const config = {
     basePath: "/docs",
     serverExternalPackages: ["@takumi-rs/image-response"],
     reactStrictMode: true,
+    async redirects() {
+        return [
+            {
+                source: "/",
+                destination: "/docs",
+                basePath: false,
+                permanent: false,
+            },
+        ];
+    },
     async rewrites() {
         return [
             {
